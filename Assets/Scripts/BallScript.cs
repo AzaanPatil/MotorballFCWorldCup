@@ -19,12 +19,12 @@ public class BallScript : MonoBehaviour
 			return;
 
 		// apply simple drag
-		rb.velocity = Vector2.Lerp(rb.velocity, rb.velocity * (1f - drag), Time.fixedDeltaTime);
+		rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, rb.linearVelocity * (1f - drag), Time.fixedDeltaTime);
 
 		// clamp speed
-		if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed)
+		if (rb.linearVelocity.sqrMagnitude > maxSpeed * maxSpeed)
 		{
-			rb.velocity = rb.velocity.normalized * maxSpeed;
+			rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
 		}
 	}
 
@@ -36,6 +36,6 @@ public class BallScript : MonoBehaviour
 			transform.position = Vector3.zero;
 
 		if (rb != null)
-			rb.velocity = Vector2.zero;
+			rb.linearVelocity = Vector2.zero;
 	}
 }

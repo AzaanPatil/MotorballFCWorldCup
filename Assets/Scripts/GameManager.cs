@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (ballRb != null)
-            ballRb.velocity = Vector2.zero;
+            ballRb.linearVelocity = Vector2.zero;
     }
 
     public void ResetGame()

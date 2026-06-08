@@ -37,7 +37,7 @@ public class FieldScript : MonoBehaviour
             ball.position = Vector3.zero;
 
         if (ballRb != null)
-            ballRb.velocity = Vector2.zero;
+            ballRb.linearVelocity = Vector2.zero;
     }
 
     public void ResetPlayers()
@@ -63,7 +63,7 @@ public class FieldScript : MonoBehaviour
 
             var rb = players[i].GetComponent<Rigidbody2D>();
             if (rb != null)
-                rb.velocity = Vector2.zero;
+                rb.linearVelocity = Vector2.zero;
         }
     }
 

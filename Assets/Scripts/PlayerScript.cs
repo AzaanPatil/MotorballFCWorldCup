@@ -26,12 +26,12 @@ public class PlayerScript : MonoBehaviour
 		if (input.sqrMagnitude > 0.01f)
 		{
 			Vector2 target = input.normalized * maxSpeed;
-			rb.velocity = Vector2.MoveTowards(rb.velocity, target, acceleration * Time.fixedDeltaTime);
+			rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, target, acceleration * Time.fixedDeltaTime);
 		}
 		else
 		{
 			// simple damping when no input
-			rb.velocity = Vector2.MoveTowards(rb.velocity, Vector2.zero, acceleration * 0.5f * Time.fixedDeltaTime);
+			rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, acceleration * 0.5f * Time.fixedDeltaTime);
 		}
 	}
 }
