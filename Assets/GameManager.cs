@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
     [Header("Active Player")]
     public Vehicle activePlayer;
 
+    [Header("Team Selection")]
+    public Vehicle.Team playerTeam = Vehicle.Team.Friendly;  // Friendly = Home, Opponent = Away
+
     private float goalTimer;
 
     void Start()
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
         if (ball != null && ballRb == null)
             ballRb = ball.GetComponent<Rigidbody2D>();
 
+        AssignTeamIDs();
         ResetGame();
         UpdateUI();
         SetMessage("Ready for kickoff");
@@ -142,7 +146,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (ballRb != null)
-            ballRb.linearVelocity = Vector2.zero;
+            ballRb.velocity = Vector2.zero;
     }
 
     public void ResetGame()
@@ -175,15 +179,6 @@ public class GameManager : MonoBehaviour
             return;
 
         activePlayer = player;
-    }
-
-    public void ApplyTeamColors()
-    {
-        Color teamAColor = teamAIsHome ? teamA.teamColor : teamB.teamColor;
-        Color teamBColor = teamAIsHome ? teamB.teamColor : teamA.team
-
-        playerVehicle.GetComponent<VehicleAppearance>().ApplyColor(teamAColor);
-        cpuVehicle.GetComponent<VehicleAppearance>().ApplyColor(teamBColor);
     }
 
     void AssignTeamIDs()
