@@ -4,8 +4,9 @@ public class VehicleAppearance : MonoBehaviour
 {
     public SpriteRenderer body;
 
-    public void SetColor(Color color)
+    public void ApplyColor(Color color)
     {
-        body.color = color;
+        if (body != null)
+            body.color = color;
     }
 }

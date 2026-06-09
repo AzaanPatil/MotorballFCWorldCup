@@ -4,7 +4,7 @@ public class Tank : Vehicle
 {
     public Transform turret;
 
-    void Update()
+    protected override void Update()
     {
         RotateTurret();
     }

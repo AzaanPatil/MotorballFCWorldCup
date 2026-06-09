@@ -30,14 +30,14 @@ public class Vehicle : MonoBehaviour
     {
         if (input.sqrMagnitude > 0.01f)
         {
-            rb.velocity = input.normalized * speed;
+            rb.linearVelocity = input.normalized * speed;
 
             float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
             rb.rotation = angle - 90;
         }
         else
         {
-            rb.velocity = Vector2.MoveTowards(rb.velocity, Vector2.zero, speed * Time.fixedDeltaTime);
+            rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, speed * Time.fixedDeltaTime);
         }
     }
 

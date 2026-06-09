@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Central game manager. Handles score, time, state, kickoff, and active player control.
+// Uses VehicleController for dynamic player switching based on proximity to ball.
 public class GameManager : MonoBehaviour
 {
     public enum GameState
@@ -16,17 +17,16 @@ public class GameManager : MonoBehaviour
     public TeamData teamA;
     public TeamData teamB;
 
-    public bool teamCPUsHome = true;
-
     [Header("Game State")]
     public GameState currentState = GameState.Kickoff;
     public float gameTime;
     public float goalPauseDuration = 2.0f;
+    public float gameDuration = 300f;
 
     [Header("Score")]
     public int teamAScore;
     public int teamBScore;
-    public int winningScore = 5;
+    public int winningScore;
     public bool useScoreLimit = false;
 
     [Header("Ball")]
@@ -39,10 +39,11 @@ public class GameManager : MonoBehaviour
     public Text messageText;
     public GameAudio audioManager;
 
-    [Header("Active Player")]
-    public Vehicle activePlayer;
-    public Vehicle.Team playerTeam = Vehicle.Team.Friendly;
+    [Header("Player Control")]
+    public VehicleController.Team playerTeam = VehicleController.Team.Friendly;
 
+    public VehicleController activePlayer;
+    private VehicleController[] allVehicles;
     private float goalTimer;
 
     void Start()
@@ -50,8 +51,11 @@ public class GameManager : MonoBehaviour
         if (ball != null && ballRb == null)
             ballRb = ball.GetComponent<Rigidbody2D>();
 
+        // Find all vehicles at startup
+        allVehicles = FindObjectsOfType<VehicleController>();
+        
         ResetGame();
-        AssignTeamIDs();
+        AssignTeams();
         UpdateUI();
         SetMessage("Ready for kickoff");
     }
@@ -61,6 +65,9 @@ public class GameManager : MonoBehaviour
         if (currentState == GameState.Playing)
         {
             gameTime += Time.deltaTime;
+            
+            // Auto-switch player control to the closest friendly vehicle
+            UpdateActivePlayer();
         }
         else if (currentState == GameState.Goal)
         {
@@ -172,49 +179,81 @@ public class GameManager : MonoBehaviour
             messageText.text = message;
     }
 
-    public void SetActivePlayer(Vehicle player)
+    public void SetActivePlayer(VehicleController player)
     {
         if (activePlayer == player)
             return;
 
+        // Disable control on previous player
+        if (activePlayer != null)
+            activePlayer.SetPlayerControlled(false);
+
+        // Enable control on new player
         activePlayer = player;
+        if (activePlayer != null)
+            activePlayer.SetPlayerControlled(true);
     }
 
-    public void ApplyTeamColors()
+    /// Automatically finds and switches to the closest friendly vehicle to the ball.
+    private void UpdateActivePlayer()
     {
-        Color teamAColor = teamAIsHome ? teamA.teamColor : teamB.teamColor;
-        Color teamBColor = teamAIsHome ? teamB.teamColor : teamA.team;
+        if (allVehicles == null || allVehicles.Length == 0)
+            return;
 
-        playerVehicle.GetComponent<VehicleAppearance>().ApplyColor(teamAColor);
-        cpuVehicle.GetComponent<VehicleAppearance>().ApplyColor(teamBColor);
-    }
+        VehicleController closestFriendly = null;
+        float closestDistance = float.MaxValue;
 
-    void AssignTeamIDs()
-    {
-        // Assign teams to all vehicles based on playerTeam
-        Vehicle[] allVehicles = FindObjectsOfType<Vehicle>();
         foreach (var vehicle in allVehicles)
         {
-            // Determine if this vehicle should be on the player's team or opposing team
-            // PlayerVehicle and activePlayer are on the player's team, rest are opponents
-            if (vehicle == activePlayer)
+            // Only consider friendly team vehicles
+            if (vehicle.team != playerTeam)
+                continue;
+
+            float distance = vehicle.DistanceToBall();
+            if (distance < closestDistance)
             {
-                vehicle.team = playerTeam;
+                closestDistance = distance;
+                closestFriendly = vehicle;
             }
-            else if (vehicle.GetComponent<PlayerVehicle>() != null)
+        }
+
+        // Switch to closest friendly vehicle
+        if (closestFriendly != null && closestFriendly != activePlayer)
+        {
+            SetActivePlayer(closestFriendly);
+        }
+    }
+
+    /// Assigns team affiliations to all vehicles.
+    void AssignTeams()
+    {
+        if (allVehicles == null || allVehicles.Length == 0)
+            allVehicles = FindObjectsOfType<VehicleController>();
+
+        foreach (var vehicle in allVehicles)
+        {
+            // Assign teams: half friendly, half opponent
+            // Or use a more sophisticated system based on initial setup
+            if (vehicle.team == playerTeam)
             {
-                vehicle.team = playerTeam;  // Friendly AI on same team
+                vehicle.SetPlayerControlled(false); // AI by default
             }
-            else
+        }
+
+        // Activate the first friendly vehicle
+        foreach (var vehicle in allVehicles)
+        {
+            if (vehicle.team == playerTeam)
             {
-                vehicle.team = (playerTeam == Vehicle.Team.Friendly) ? Vehicle.Team.Opponent : Vehicle.Team.Friendly;  // Opposing team
+                SetActivePlayer(vehicle);
+                break;
             }
         }
     }
 
-    public void SetPlayerTeam(Vehicle.Team selectedTeam)
+    public void SetPlayerTeam(VehicleController.Team selectedTeam)
     {
         playerTeam = selectedTeam;
-        AssignTeamIDs();
+        AssignTeams();
     }
 }

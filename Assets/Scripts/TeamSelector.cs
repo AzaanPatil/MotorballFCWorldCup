@@ -19,16 +19,16 @@ public class TeamSelector : MonoBehaviour
             selectionPanel.SetActive(true);
 
         if (homeButton != null)
-            homeButton.onClick.AddListener(() => SelectTeam(Vehicle.Team.Friendly));
+            homeButton.onClick.AddListener(() => SelectTeam(VehicleController.Team.Friendly));
 
         if (awayButton != null)
-            awayButton.onClick.AddListener(() => SelectTeam(Vehicle.Team.Opponent));
+            awayButton.onClick.AddListener(() => SelectTeam(VehicleController.Team.Opponent));
 
         if (instructionText != null)
             instructionText.text = "Choose your team:\nHome or Away";
     }
 
-    void SelectTeam(Vehicle.Team selectedTeam)
+    void SelectTeam(VehicleController.Team selectedTeam)
     {
         if (gameManager != null)
         {
@@ -39,7 +39,7 @@ public class TeamSelector : MonoBehaviour
             selectionPanel.SetActive(false);
 
         if (instructionText != null)
-            instructionText.text = (selectedTeam == Vehicle.Team.Friendly) ? "You are HOME (Friendly)" : "You are AWAY (Opponent)";
+            instructionText.text = (selectedTeam == VehicleController.Team.Friendly) ? "You are HOME (Friendly)" : "You are AWAY (Opponent)";
 
         // Start the match after a brief delay.
         Invoke(nameof(StartMatch), 1f);

@@ -37,10 +37,25 @@ public class FieldScript : MonoBehaviour
     void ResetBall()
     {
         if (ball != null)
-            ball.position = Vector3.zero;
+        {
+            if (kickoffPoint != null)
+                ball.position = kickoffPoint.position;
+            else
+                ball.position = Vector3.zero;
+            
+        }
 
         if (ballRb != null)
+        {
             ballRb.linearVelocity = Vector2.zero;
+            ballRb.angularVelocity = 0f;
+        }
+    }
+
+    public void ResetGame()
+    {
+        ResetBall();
+        ResetPlayers();
     }
 
     public void ResetPlayers()
@@ -53,18 +68,13 @@ public class FieldScript : MonoBehaviour
             if (players[i] == null)
                 continue;
 
-            // Place each player at a kickoff point if available, otherwise use their initial position.
+            // Place each player at a kickoff point if available.
             if (playerKickoffPoints != null && i < playerKickoffPoints.Length && playerKickoffPoints[i] != null)
             {
                 players[i].position = playerKickoffPoints[i].position;
             }
-            else
-            {
-                var ps = players[i].GetComponent<PlayerScript>();
-                if (ps != null)
-                    players[i].position = ps.initialPosition;
-            }
 
+            // Stop all movement
             var rb = players[i].GetComponent<Rigidbody2D>();
             if (rb != null)
                 rb.linearVelocity = Vector2.zero;
