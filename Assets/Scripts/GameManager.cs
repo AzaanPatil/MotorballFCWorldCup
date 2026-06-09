@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
     public void ApplyTeamColors()
     {
         Color teamAColor = teamAIsHome ? teamA.teamColor : teamB.teamColor;
-        Color teamBColor = teamAIsHome ? teamB.teamColor : teamA.team
+        Color teamBColor = teamAIsHome ? teamB.teamColor : teamA.team;
 
         playerVehicle.GetComponent<VehicleAppearance>().ApplyColor(teamAColor);
         cpuVehicle.GetComponent<VehicleAppearance>().ApplyColor(teamBColor);
