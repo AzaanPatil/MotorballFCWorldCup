@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Vehicle : MonoBehaviour
 {
-    public enum Team { Friendly, Opponent }    // Friendly = Home (1), Opponent = Away (0)
+    public enum Team { Friendly, Opponent }    // Friendly = player team, Opponent = enemy team.
 
-    public float speed = 10f;
-    public float rotationSpeed = 100f;
-    public float ballDetectionRadius = 2f; // Distance to auto-switch control
-    public Team team = Team.Friendly;      // Friendly = Home, Opponent = Away
+    public float speed;
+    public float rotationSpeed;
+    public float ballDetectionRadius; // Distance for automatic team switching.
+    public Team team;
 
     protected Rigidbody2D rb;
     protected GameManager gameManager;

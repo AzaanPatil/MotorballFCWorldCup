@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// UI helper for selecting whether the player is on the home or away team.
 public class TeamSelector : MonoBehaviour
 {
     public GameManager gameManager;
@@ -40,7 +41,7 @@ public class TeamSelector : MonoBehaviour
         if (instructionText != null)
             instructionText.text = (selectedTeam == Vehicle.Team.Friendly) ? "You are HOME (Friendly)" : "You are AWAY (Opponent)";
 
-        // Start the match after a brief delay
+        // Start the match after a brief delay.
         Invoke(nameof(StartMatch), 1f);
     }
 

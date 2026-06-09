@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// Central game manager. Handles score, time, state, kickoff, and active player control.
 public class GameManager : MonoBehaviour
 {
     public enum GameState
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Active Player")]
     public Vehicle activePlayer;
+    public Vehicle.Team playerTeam = Vehicle.Team.Friendly;
 
     private float goalTimer;
 
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
             ballRb = ball.GetComponent<Rigidbody2D>();
 
         ResetGame();
+        AssignTeamIDs();
         UpdateUI();
         SetMessage("Ready for kickoff");
     }

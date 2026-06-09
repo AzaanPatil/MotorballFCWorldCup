@@ -8,7 +8,7 @@ public class PlayerVehicle : Vehicle
     {
         base.Update();
 
-        // Only read input if this is the active player
+        // Only accept player input when this object is the currently active player.
         if (IsActivePlayer())
         {
             input.x = Input.GetAxis("Horizontal");
@@ -19,7 +19,7 @@ public class PlayerVehicle : Vehicle
             input = Vector2.zero;
         }
 
-        // Auto-switch control when near ball
+        // Automatically switch to this player when the ball is within the detection radius.
         if (IsNearBall() && gameManager != null)
         {
             gameManager.SetActivePlayer(this);

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// CPU-controlled vehicle logic, including opponent checking and friendly support behavior.
 public class CPUVehicle : Vehicle
 {
     [Header("CPU Settings")]
@@ -14,7 +15,7 @@ public class CPUVehicle : Vehicle
     {
         base.Update();
 
-        // Only use AI if this is NOT the active player
+        // Only use AI if this is NOT the active player.
         if (!IsActivePlayer() && ball != null)
         {
             if (team == Team.Opponent)
@@ -50,7 +51,7 @@ public class CPUVehicle : Vehicle
         float ballScore = (laneSearchDistance - distToBall) / laneSearchDistance;
         ballScore = Mathf.Max(0, ballScore);
 
-        // If threat is immediate and high, prioritize checking the opponent
+        // If threat is stronger than ball opportunity, check the player.
         if (distToOpponent < checkingDistance && threatScore > ballScore)
         {
             // Move toward opponent to check/block
@@ -71,10 +72,9 @@ public class CPUVehicle : Vehicle
         Vehicle activePlayer = gameManager.activePlayer;
         Vehicle nearestThreat = GetNearestOpponent(protectionDistance);
 
-        // If an opponent is close to the active player, move to protect
+        // Protect the active player when an opponent is too close.
         if (nearestThreat != null)
         {
-            float distToThreat = Vector3.Distance(transform.position, nearestThreat.transform.position);
             float distPlayerToThreat = Vector3.Distance(activePlayer.transform.position, nearestThreat.transform.position);
 
             if (distPlayerToThreat < protectionDistance)
@@ -92,7 +92,7 @@ public class CPUVehicle : Vehicle
     {
         // Try to move to an open area away from opponents
         Vehicle nearestOpponent = GetNearestOpponent();
-        
+
         if (nearestOpponent == null)
         {
             // No opponents - move to middle of field
@@ -120,7 +120,7 @@ public class CPUVehicle : Vehicle
 
     void FixedUpdate()
     {
-        // Use custom speed for AI movement
+        // Apply movement using the CPU's preferred speed.
         float originalSpeed = speed;
         speed = CPUMoveSpeed;
         Move(CPUInput);

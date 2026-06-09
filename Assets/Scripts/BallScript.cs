@@ -3,13 +3,17 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BallScript : MonoBehaviour
 {
+	// Maximum ball speed, used to clamp the Rigidbody2D velocity.
 	public float maxSpeed = 15f;
+
+	// Simple drag factor applied each physics update.
 	public float drag = 0.5f;
 
 	Rigidbody2D rb;
 
 	void Awake()
 	{
+		// Cache the rigidbody reference on startup.
 		rb = GetComponent<Rigidbody2D>();
 	}
 
@@ -18,10 +22,10 @@ public class BallScript : MonoBehaviour
 		if (rb == null)
 			return;
 
-		// apply simple drag
+		// Apply basic drag so the ball slows over time.
 		rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, rb.linearVelocity * (1f - drag), Time.fixedDeltaTime);
 
-		// clamp speed
+		// Prevent the ball from exceeding the configured top speed.
 		if (rb.linearVelocity.sqrMagnitude > maxSpeed * maxSpeed)
 		{
 			rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
@@ -30,6 +34,7 @@ public class BallScript : MonoBehaviour
 
 	public void ResetBall(Transform kickoffPoint = null)
 	{
+		// Reset the ball position and stop all movement.
 		if (kickoffPoint != null)
 			transform.position = kickoffPoint.position;
 		else

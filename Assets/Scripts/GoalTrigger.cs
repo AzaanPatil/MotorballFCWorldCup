@@ -1,20 +1,22 @@
 using UnityEngine;
 
+// Detects when the ball enters a goal and notifies the central game manager.
 public class GoalTrigger : MonoBehaviour
 {
     public GameManager gameManager;
+    public FieldScript field;
     public bool scoredForTeamA = true;
-    public string ballTag = "Ball";
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (gameManager == null || other == null)
+        if (gameManager == null || field == null)
             return;
 
-        if (string.IsNullOrEmpty(ballTag) || other.CompareTag(ballTag))
+        if (other.CompareTag("Ball"))
         {
             gameManager.GoalScored(scoredForTeamA);
+
+            field.ResetGame();
         }
     }
 }
-
