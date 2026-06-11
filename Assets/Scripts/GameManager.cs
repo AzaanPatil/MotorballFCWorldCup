@@ -17,11 +17,14 @@ public class GameManager : MonoBehaviour
     public TeamData teamA;
     public TeamData teamB;
 
+    public Transform teamASpawn;
+    public Transform teamBSpawn;
+
     [Header("Game State")]
     public GameState currentState = GameState.Kickoff;
     public float gameTime;
     public float goalPauseDuration = 2.0f;
-    public float gameDuration = 300f;
+    public float gameDuration = 120f;
 
     [Header("Score")]
     public int teamAScore;
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour
     private float goalTimer;
 
     void Start()
-    {
+    { 
         if (ball != null && ballRb == null)
             ballRb = ball.GetComponent<Rigidbody2D>();
 
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
         allVehicles = FindObjectsOfType<VehicleController>();
         
         ResetGame();
+        StartKickoff();
         AssignTeams();
         UpdateUI();
         SetMessage("Ready for kickoff");
@@ -67,7 +71,12 @@ public class GameManager : MonoBehaviour
             gameTime += Time.deltaTime;
             
             // Auto-switch player control to the closest friendly vehicle
-            UpdateActivePlayer();
+            //UpdateActivePlayer();
+
+            if (gameTime >= gameDuration)
+            {
+                EndGame();
+            }
         }
         else if (currentState == GameState.Goal)
         {
@@ -118,7 +127,17 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         currentState = GameState.GameOver;
-        SetMessage("Game Over");
+
+        string winnerMessage;
+
+        if (teamAScore > teamBScore)
+            winnerMessage = teamA.teamName + " WINS!!!";
+        else if (teamBScore > teamAScore)
+            winnerMessage = teamB.teamName + " WINS!!!";
+        else
+            winnerMessage = "DRAW!";
+
+        SetMessage(winnerMessage);
     }
 
     public void GoalScored(bool teamAScored)
@@ -146,13 +165,33 @@ public class GameManager : MonoBehaviour
 
     public void ResetRound()
     {
-        if (ball != null)
-        {
-            ball.position = (kickoffPoint != null) ? kickoffPoint.position : Vector3.zero;
-        }
+        // Reset ball
+    if (ball != null)
+    {
+        ball.position = (kickoffPoint != null) ? kickoffPoint.position : Vector3.zero;
+    }
 
-        if (ballRb != null)
-            ballRb.linearVelocity = Vector2.zero;
+    if (ballRb != null)
+        ballRb.linearVelocity = Vector2.zero;
+
+    // Reset players
+    VehicleController[] vehicles = FindObjectsOfType<VehicleController>();
+
+    foreach (var v in vehicles)
+    {
+        if (v.team == VehicleController.Team.Friendly && teamASpawn != null)
+            v.transform.position = teamASpawn.position;
+
+        else if (v.team == VehicleController.Team.Opponent && teamBSpawn != null)
+            v.transform.position = teamBSpawn.position;
+
+        Rigidbody2D rb = v.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+    }
     }
 
     public void ResetGame()
@@ -185,8 +224,8 @@ public class GameManager : MonoBehaviour
             return;
 
         // Disable control on previous player
-        if (activePlayer != null)
-            activePlayer.SetPlayerControlled(false);
+        //if (activePlayer != null)
+        //    activePlayer.SetPlayerControlled(false);
 
         // Enable control on new player
         activePlayer = player;
@@ -234,21 +273,21 @@ public class GameManager : MonoBehaviour
         {
             // Assign teams: half friendly, half opponent
             // Or use a more sophisticated system based on initial setup
-            if (vehicle.team == playerTeam)
-            {
-                vehicle.SetPlayerControlled(false); // AI by default
-            }
+            //if (vehicle.team == playerTeam)
+            //{
+            //    vehicle.SetPlayerControlled(false); // AI by default
+            //}
         }
 
         // Activate the first friendly vehicle
-        foreach (var vehicle in allVehicles)
-        {
-            if (vehicle.team == playerTeam)
-            {
-                SetActivePlayer(vehicle);
-                break;
-            }
-        }
+        //foreach (var vehicle in allVehicles)
+        //{
+        //    if (vehicle.team == playerTeam)
+        //    {
+        //        SetActivePlayer(vehicle);
+        //        break;
+        //    }
+        //}
     }
 
     public void SetPlayerTeam(VehicleController.Team selectedTeam)

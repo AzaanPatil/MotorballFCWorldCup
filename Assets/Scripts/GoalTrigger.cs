@@ -7,13 +7,17 @@ public class GoalTrigger : MonoBehaviour
     public FieldScript field;
     public bool scoredForTeamA = true;
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (gameManager == null || field == null)
             return;
 
+        //if (gameManager.currentState != GameManager.GameState.Playing)
+        //return;
+
         if (other.CompareTag("Ball"))
         {
+            Debug.Log(gameManager.currentState);
             gameManager.GoalScored(scoredForTeamA);
 
             field.ResetGame();

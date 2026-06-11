@@ -33,7 +33,7 @@ public class VehicleController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<GameManager>();
         if (gameManager != null)
-            ball = gameManager.ball;
+            ball = gameManager.ball;    
     }
 
     void Update()
@@ -41,14 +41,18 @@ public class VehicleController : MonoBehaviour
         // Only read player input if this vehicle is player-controlled
         if (isPlayerControlled)
         {
-            playerInput.x = Input.GetAxisRaw(horizontalAxis);
-            playerInput.y = Input.GetAxisRaw(verticalAxis);
+            playerInput = Vector2.zero;
+
+            if (Input.GetKey(KeyCode.UpArrow)) playerInput.y += 1;
+            if (Input.GetKey(KeyCode.DownArrow)) playerInput.y -= 1;
+            if (Input.GetKey(KeyCode.RightArrow)) playerInput.x += 1;
+            if (Input.GetKey(KeyCode.LeftArrow)) playerInput.x -= 1;
 
             // Auto-switch: if the player is far from this vehicle, allow switching
-            if (IsNearBall() && gameManager != null)
-            {
-                gameManager.SetActivePlayer(this);
-            }
+            //if (IsNearBall() && gameManager != null)
+            //{
+            //    gameManager.SetActivePlayer(this);
+            //}
         }
     }
 
@@ -79,7 +83,11 @@ public class VehicleController : MonoBehaviour
         else
         {
             // Smooth deceleration when no input
-            rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, acceleration * 0.5f * Time.fixedDeltaTime);
+            rb.linearVelocity = Vector2.MoveTowards(
+                rb.linearVelocity,
+                Vector2.zero,
+                acceleration * 0.1f * Time.fixedDeltaTime
+            );
         }
     }
 
@@ -109,7 +117,7 @@ public class VehicleController : MonoBehaviour
             return;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        rb.rotation = angle - 90;
+        rb.rotation = angle + 90;
     }
 
     /// Check if this vehicle is close enough to the ball for auto-switching.
