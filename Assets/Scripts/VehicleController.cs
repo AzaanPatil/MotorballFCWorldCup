@@ -10,6 +10,11 @@ public class VehicleController : MonoBehaviour
     [Header("Team")]
     public Team team;
 
+    [Header("Hit")]
+    public float hitForce = 10f;
+    public float hitCooldown = 0.5f;
+    private float lastHitTime = -10f;
+    
     [Header("Movement")]
     public float maxSpeed = 6f;
     public float acceleration = 30f;
@@ -28,8 +33,18 @@ public class VehicleController : MonoBehaviour
     private Transform ball;
     private Vector2 playerInput = Vector2.zero;
 
+    [Header("Boost")]
+    public float boostMultiplier = 2f;
+    public float boostDrainRate = 1f;
+    public float boostRechargeRate = 0.5f;
+    public float maxBoost = 3f;
+
+    private float currentBoost;
+    private bool isBoosting = false;
+
     void Start()
     {
+        currentBoost = maxBoost;
         rb = GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<GameManager>();
         if (gameManager != null)
@@ -41,6 +56,8 @@ public class VehicleController : MonoBehaviour
         // Only read player input if this vehicle is player-controlled
         if (isPlayerControlled)
         {
+            isBoosting = Input.GetKey(KeyCode.LeftShift) && currentBoost > 0f;
+            
             playerInput = Vector2.zero;
 
             if (Input.GetKey(KeyCode.UpArrow)) playerInput.y += 1;
@@ -53,6 +70,11 @@ public class VehicleController : MonoBehaviour
             //{
             //    gameManager.SetActivePlayer(this);
             //}
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                TryHit();
+            }
         }
     }
 
@@ -73,6 +95,21 @@ public class VehicleController : MonoBehaviour
     {
         if (playerInput.sqrMagnitude > 0.01f)
         {
+            float speed = maxSpeed;
+
+            if (isBoosting)
+            {
+                speed *= boostMultiplier;
+                currentBoost -= boostDrainRate * Time.deltaTime;
+                rb.AddForce(playerInput.normalized * 2f, ForceMode2D.Force);
+            }
+            else
+            {
+                currentBoost += boostRechargeRate * Time.deltaTime;
+            }
+
+            currentBoost = Mathf.Clamp(currentBoost, 0f, maxBoost);
+            
             // Calculate target velocity in the input direction
             Vector2 targetVelocity = playerInput.normalized * maxSpeed;
             rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
@@ -143,5 +180,41 @@ public class VehicleController : MonoBehaviour
     {
         isPlayerControlled = controlled;
         playerInput = Vector2.zero;
+    }
+
+
+    void TryHit()
+    {
+        if (Time.time - lastHitTime < hitCooldown)
+            return;
+
+        if (ball == null)
+            return;
+
+        float distance = Vector2.Distance(transform.position, ball.position);
+
+        // Only hit if close enough
+        if (distance < 2f)
+        {
+            Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
+            if (ballRb != null)
+            {
+                Vector2 forward = transform.up;
+                Vector2 toBall = (ball.position - transform.position).normalized;
+
+                // Blend forward direction with ball direction
+                Vector2 direction = (forward + toBall).normalized;
+
+                // Boost synergy 🔥
+                float force = hitForce;
+                if (isBoosting)
+                    force *= 1.5f;
+
+                ballRb.AddForce(direction * force, ForceMode2D.Impulse);
+                rb.AddForce(-direction * 2f, ForceMode2D.Impulse);
+                
+                lastHitTime = Time.time;
+            }
+        }
     }
 }
