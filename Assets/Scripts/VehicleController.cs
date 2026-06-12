@@ -42,6 +42,11 @@ public class VehicleController : MonoBehaviour
     private float currentBoost;
     private bool isBoosting = false;
 
+    [Header("Passing")]
+    public float passForce = 8f;
+    public float passCooldown = 0.5f;
+    private float lastPassTime = -10f;
+
     void Start()
     {
         currentBoost = maxBoost;
@@ -74,6 +79,11 @@ public class VehicleController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 TryHit();
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                TryPass();
             }
         }
     }
@@ -216,5 +226,63 @@ public class VehicleController : MonoBehaviour
                 lastHitTime = Time.time;
             }
         }
+    }
+
+    void TryPass()
+    {
+        if (Time.time - lastPassTime < passCooldown)
+            return;
+
+        if (ball == null)
+            return;
+
+        // Find nearest teammate
+        VehicleController[] allVehicles = FindObjectsOfType<VehicleController>();
+
+        VehicleController nearestTeammate = null;
+        float closestDist = float.MaxValue;
+
+        foreach (var v in allVehicles)
+        {
+            if (v == this) continue;
+            if (v.team != this.team) continue;
+
+            float dist = Vector2.Distance(transform.position, v.transform.position);
+
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                nearestTeammate = v;
+            }
+        }
+
+        if (nearestTeammate == null)
+            return;
+
+        // Make sure we're close enough to the ball
+        float ballDist = Vector2.Distance(transform.position, ball.position);
+        if (ballDist > 2f)
+            return;
+
+        Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
+        if (ballRb == null)
+            return;
+
+        // Pass toward teammate
+        Rigidbody2D teammateRb = nearestTeammate.GetComponent<Rigidbody2D>();
+
+        Vector2 futurePos = (Vector2)nearestTeammate.transform.position;
+
+        if (teammateRb != null)
+        {
+            futurePos += teammateRb.linearVelocity * 0.3f;
+        }
+
+        Vector2 direction = (futurePos - (Vector2)ball.position).normalized;
+
+        ballRb.linearVelocity = Vector2.zero;
+        ballRb.AddForce(direction * passForce, ForceMode2D.Impulse);
+
+        lastPassTime = Time.time;
     }
 }

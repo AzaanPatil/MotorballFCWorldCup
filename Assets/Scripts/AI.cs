@@ -55,24 +55,76 @@ public class AI : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         rb.rotation = angle + 90;
 
-        TryShoot();
+        TryPlayBall();
     }
 
-    void TryShoot()
+    void TryPlayBall()
     {
         if (ball == null) return;
 
         float distance = Vector2.Distance(transform.position, ball.position);
 
-        if (distance < 2f)
-        {
-            Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
-            if (ballRb != null)
-            {
-                Vector2 directionToGoal = (opponentGoal.position - ball.position).normalized;
+        if (distance > 2f) return;
 
-                ballRb.AddForce(directionToGoal * 8f, ForceMode2D.Impulse);
+        Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
+        if (ballRb == null) return;
+
+        Vector2 toGoal = (opponentGoal.position - ball.position).normalized;
+
+        // 🧠 Check for teammate
+        VehicleController teammate = GetNearestTeammate();
+
+        if (teammate != null)
+        {
+            float teammateDist = Vector2.Distance(transform.position, teammate.transform.position);
+
+            // 🎯 PASS if teammate is closer to goal
+            if (teammateDist < 6f && teammate.transform.position.x > transform.position.x)
+            {
+                Rigidbody2D teammateRb = teammate.GetComponent<Rigidbody2D>();
+
+                Vector2 futurePos = (Vector2)teammate.transform.position;
+
+                if (teammateRb != null)
+                {
+                    futurePos += teammateRb.linearVelocity * 0.3f;
+                }
+
+                Vector2 passDir = (futurePos - (Vector2)ball.position).normalized;
+                
+                ballRb.linearVelocity = Vector2.zero;
+                ballRb.AddForce(passDir * 6f, ForceMode2D.Impulse);
+
+                return;
             }
         }
+
+        // ⚽ Otherwise SHOOT
+        ballRb.linearVelocity = Vector2.zero;
+        ballRb.AddForce(toGoal * 8f, ForceMode2D.Impulse);
     }
+
+    VehicleController GetNearestTeammate()
+    {
+        VehicleController[] all = FindObjectsOfType<VehicleController>();
+
+        VehicleController closest = null;
+        float closestDist = float.MaxValue;
+
+        foreach (var v in all)
+        {
+            if (v.transform == transform) continue;
+            if (v.team != GetComponent<VehicleController>().team) continue;
+
+            float dist = Vector2.Distance(transform.position, v.transform.position);
+
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                closest = v;
+            }
+        }
+
+        return closest;
+}
 }
