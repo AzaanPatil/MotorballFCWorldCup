@@ -34,6 +34,8 @@ public class BallScript : MonoBehaviour
 
 	public void ResetBall(Transform kickoffPoint = null)
 	{
+		rb.angularVelocity = 0f;
+		
 		// Reset the ball position and stop all movement.
 		if (kickoffPoint != null)
 			transform.position = kickoffPoint.position;

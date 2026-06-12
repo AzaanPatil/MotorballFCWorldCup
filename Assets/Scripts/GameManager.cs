@@ -165,6 +165,9 @@ public class GameManager : MonoBehaviour
 
     public void ResetRound()
     {
+
+    ballRb.angularVelocity = 0f;
+    
         // Reset ball
     if (ball != null)
     {
