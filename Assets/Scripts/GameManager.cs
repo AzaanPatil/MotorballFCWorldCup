@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
     private VehicleController[] allVehicles;
     private float goalTimer;
 
+    private float lastSwitchTime = 0f;
+    public float switchCooldown = 0.3f;
+
     void Start()
     { 
         if (ball != null && ballRb == null)
@@ -62,6 +65,15 @@ public class GameManager : MonoBehaviour
         AssignTeams();
         UpdateUI();
         SetMessage("Ready for kickoff");
+
+        foreach (var vehicle in allVehicles)
+        {
+            if (vehicle.team == playerTeam)
+            {
+                SetActivePlayer(vehicle);
+                break;
+            }
+        }
     }
 
     void Update()
@@ -85,6 +97,11 @@ public class GameManager : MonoBehaviour
             {
                 StartKickoff();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            SwitchPlayer();
         }
     }
 
@@ -167,7 +184,7 @@ public class GameManager : MonoBehaviour
     {
 
     ballRb.angularVelocity = 0f;
-    
+
         // Reset ball
     if (ball != null)
     {
@@ -227,8 +244,8 @@ public class GameManager : MonoBehaviour
             return;
 
         // Disable control on previous player
-        //if (activePlayer != null)
-        //    activePlayer.SetPlayerControlled(false);
+        if (activePlayer != null)
+            activePlayer.SetPlayerControlled(false);
 
         // Enable control on new player
         activePlayer = player;
@@ -297,5 +314,44 @@ public class GameManager : MonoBehaviour
     {
         playerTeam = selectedTeam;
         AssignTeams();
+    }
+
+    void SwitchPlayer()
+    {
+        
+        
+        if (allVehicles == null || allVehicles.Length == 0)
+            return;
+
+        VehicleController bestChoice = null;
+        float closestDistance = float.MaxValue;
+
+        foreach (var vehicle in allVehicles)
+        {
+            // Only teammates
+            if (vehicle.team != playerTeam)
+                continue;
+
+            float distance = vehicle.DistanceToBall();
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                bestChoice = vehicle;
+            }
+        }
+
+        if (bestChoice != null)
+        {
+            SetActivePlayer(bestChoice);
+        }
+
+        if (bestChoice == activePlayer)
+        return;
+
+        if (Time.time - lastSwitchTime < switchCooldown)
+            return;
+
+        lastSwitchTime = Time.time;
     }
 }
