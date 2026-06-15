@@ -6,10 +6,25 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class VehicleController : MonoBehaviour
 {
-    public enum Team { Friendly, Opponent }
+    public enum Team { 
+        Friendly, 
+        Opponent 
+    }
+    
     [Header("Team")]
     public Team team;
 
+    public enum VehicleType
+    {
+        Car,
+        MonsterTruck,
+        Quad,
+        Tank
+    }
+
+    [Header("Vehicle Type")]
+    public VehicleType vehicleType;
+    
     [Header("Hit")]
     public float hitForce = 10f;
     public float hitCooldown = 0.5f;
@@ -54,6 +69,38 @@ public class VehicleController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         if (gameManager != null)
             ball = gameManager.ball;    
+
+        void ApplyVehicleStats()
+        {
+            switch (vehicleType)
+            {
+                case VehicleType.Car:
+                    maxSpeed = 6f;
+                    acceleration = 30f;
+                    hitForce = 10f;
+                    break;
+
+                case VehicleType.MonsterTruck:
+                    maxSpeed = 4f;
+                    acceleration = 20f;
+                    hitForce = 15f;
+                    break;
+
+                case VehicleType.Quad:
+                    maxSpeed = 5f;
+                    acceleration = 40f;
+                    hitForce = 7f;
+                    break;
+
+                case VehicleType.Tank:
+                    maxSpeed = 3f;
+                    acceleration = 15f;
+                    hitForce = 20f;
+                    break;
+            }
+        }
+
+        ApplyVehicleStats();
     }
 
     void Update()

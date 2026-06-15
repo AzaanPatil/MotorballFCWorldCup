@@ -14,6 +14,45 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
+    public enum GameMode
+    {
+        OneVOne,
+        TwoVTwo,
+        ThreeVThree,
+        FiveVFive
+    }
+
+    [System.Serializable]
+    // Serializable settings for each game mode so they can be configured in the Inspector
+    public class GameModeSettings
+    {
+        public GameMode mode;
+        public int playersPerTeam;
+        public float matchDuration;
+        public bool useGoalie;
+    }
+
+    public GameModeSettings[] modeSettings;
+
+    [System.Serializable]
+    public class TeamSpawnGroup
+    {
+        public GameMode mode;
+
+        public Transform[] teamASpawns;
+        public Transform[] teamBSpawns;
+        public Transform teamAGoalieSpawn;
+        public Transform teamBGoalieSpawn;
+    }
+
+    public TeamSpawnGroup[] spawnGroups;
+
+    [Header("Game Mode")]
+    public GameMode currentMode;
+
+    //This is a reference to class GameModeSettings, which is a serializable class that holds settings for each game mode. It allows us to easily configure different modes in the Unity Inspector.
+    public GameModeSettings[] gameModeSettings;
+
     public TeamData teamA;
     public TeamData teamB;
 
@@ -52,8 +91,13 @@ public class GameManager : MonoBehaviour
     private float lastSwitchTime = 0f;
     public float switchCooldown = 0.3f;
 
+    [Header("Spawn Points")]
+    public Transform[] teamASpawnPoints;
+    public Transform[] teamBSpawnPoints;
+
     void Start()
     { 
+        
         if (ball != null && ballRb == null)
             ballRb = ball.GetComponent<Rigidbody2D>();
 
@@ -102,6 +146,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             SwitchPlayer();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetGame();
+            StartKickoff();
         }
     }
 
@@ -183,35 +233,47 @@ public class GameManager : MonoBehaviour
     public void ResetRound()
     {
 
+    int aIndex = 0;
+    int bIndex = 0;
     ballRb.angularVelocity = 0f;
 
         // Reset ball
-    if (ball != null)
-    {
-        ball.position = (kickoffPoint != null) ? kickoffPoint.position : Vector3.zero;
-    }
-
-    if (ballRb != null)
-        ballRb.linearVelocity = Vector2.zero;
-
-    // Reset players
-    VehicleController[] vehicles = FindObjectsOfType<VehicleController>();
-
-    foreach (var v in vehicles)
-    {
-        if (v.team == VehicleController.Team.Friendly && teamASpawn != null)
-            v.transform.position = teamASpawn.position;
-
-        else if (v.team == VehicleController.Team.Opponent && teamBSpawn != null)
-            v.transform.position = teamBSpawn.position;
-
-        Rigidbody2D rb = v.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        if (ball != null)
         {
-            rb.linearVelocity = Vector2.zero;
-            rb.angularVelocity = 0f;
+            ball.position = (kickoffPoint != null) ? kickoffPoint.position : Vector3.zero;
         }
-    }
+
+        if (ballRb != null)
+        {
+            ballRb.linearVelocity = Vector2.zero;
+            ballRb.angularVelocity = 0f;
+        }
+
+        SpawnPlayers();
+
+        // Reset players
+        VehicleController[] vehicles = FindObjectsOfType<VehicleController>();
+
+        foreach (var v in vehicles)
+        {
+            if (v.team == VehicleController.Team.Friendly && aIndex < teamASpawnPoints.Length)
+            {
+                v.transform.position = teamASpawnPoints[aIndex].position;
+                aIndex++;
+            }
+            else if (v.team == VehicleController.Team.Opponent && bIndex < teamBSpawnPoints.Length)
+            {
+                v.transform.position = teamBSpawnPoints[bIndex].position;
+                bIndex++;
+            }
+
+            Rigidbody2D rb = v.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+            }
+        }
     }
 
     public void ResetGame()
@@ -254,34 +316,34 @@ public class GameManager : MonoBehaviour
     }
 
     /// Automatically finds and switches to the closest friendly vehicle to the ball.
-    private void UpdateActivePlayer()
-    {
-        if (allVehicles == null || allVehicles.Length == 0)
-            return;
+    //private void UpdateActivePlayer()
+    //{
+    //    if (allVehicles == null || allVehicles.Length == 0)
+    //        return;
 
-        VehicleController closestFriendly = null;
-        float closestDistance = float.MaxValue;
+    //    VehicleController closestFriendly = null;
+    //    float closestDistance = float.MaxValue;
 
-        foreach (var vehicle in allVehicles)
-        {
+    //    foreach (var vehicle in allVehicles)
+    //    {
             // Only consider friendly team vehicles
-            if (vehicle.team != playerTeam)
-                continue;
+    //        if (vehicle.team != playerTeam)
+    //            continue;
 
-            float distance = vehicle.DistanceToBall();
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestFriendly = vehicle;
-            }
-        }
+    //        float distance = vehicle.DistanceToBall();
+    //        if (distance < closestDistance)
+    //        {
+    //            closestDistance = distance;
+    //            closestFriendly = vehicle;
+    //        }
+    //    }
 
         // Switch to closest friendly vehicle
-        if (closestFriendly != null && closestFriendly != activePlayer)
-        {
-            SetActivePlayer(closestFriendly);
-        }
-    }
+    //    if (closestFriendly != null && closestFriendly != activePlayer)
+    //    {
+    //        SetActivePlayer(closestFriendly);
+    //    }
+    //}
 
     /// Assigns team affiliations to all vehicles.
     void AssignTeams()
@@ -289,15 +351,15 @@ public class GameManager : MonoBehaviour
         if (allVehicles == null || allVehicles.Length == 0)
             allVehicles = FindObjectsOfType<VehicleController>();
 
-        foreach (var vehicle in allVehicles)
-        {
+        //foreach (var vehicle in allVehicles)
+        //{
             // Assign teams: half friendly, half opponent
             // Or use a more sophisticated system based on initial setup
             //if (vehicle.team == playerTeam)
             //{
             //    vehicle.SetPlayerControlled(false); // AI by default
             //}
-        }
+        //}
 
         // Activate the first friendly vehicle
         //foreach (var vehicle in allVehicles)
@@ -353,5 +415,77 @@ public class GameManager : MonoBehaviour
             return;
 
         lastSwitchTime = Time.time;
+    }
+
+    GameModeSettings GetModeSettings()
+    {
+        foreach (var setting in modeSettings)
+        {
+            if (setting.mode == currentMode)
+            {
+                return setting;
+            }
+        }
+        return null;
+    }
+
+    void SpawnPlayers()
+    {
+        GameModeSettings settings = GetModeSettings();
+
+        TeamSpawnGroup group = null;
+
+        foreach (var g in spawnGroups)
+        {
+            if (g.mode == currentMode)
+            {
+                group = g;
+                break;
+            }
+        }
+
+        if (group == null || settings == null)
+            return;
+
+        VehicleController[] vehicles = FindObjectsOfType<VehicleController>();
+
+        int aIndex = 0;
+        int bIndex = 0;
+
+        foreach (var v in vehicles)
+        {
+            Rigidbody2D rb = v.GetComponent<Rigidbody2D>();
+
+            if (v.team == VehicleController.Team.Friendly)
+            {
+                if (aIndex < settings.playersPerTeam)
+                {
+                    v.transform.position = group.teamASpawns[aIndex].position;
+                    aIndex++;
+                }
+                else if (settings.useGoalie)
+                {
+                    v.transform.position = group.teamAGoalieSpawn.position;
+                }
+            }
+            else
+            {
+                if (bIndex < settings.playersPerTeam)
+                {
+                    v.transform.position = group.teamBSpawns[bIndex].position;
+                    bIndex++;
+                }
+                else if (settings.useGoalie)
+                {
+                    v.transform.position = group.teamBGoalieSpawn.position;
+                }
+            }
+
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+            }
+        }
     }
 }
