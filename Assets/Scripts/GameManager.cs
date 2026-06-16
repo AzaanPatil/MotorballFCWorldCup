@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
         public bool useGoalie;
     }
 
-    public GameModeSettings[] modeSettings;
 
     [System.Serializable]
     public class TeamSpawnGroup
@@ -55,6 +54,12 @@ public class GameManager : MonoBehaviour
 
     public TeamData teamA;
     public TeamData teamB;
+
+    public GameObject[] teamAPlayers;
+    public GameObject[] teamBPlayers;
+
+    public GameObject teamAGoalie;
+    public GameObject teamBGoalie;
 
     public Transform teamASpawn;
     public Transform teamBSpawn;
@@ -95,8 +100,18 @@ public class GameManager : MonoBehaviour
     public Transform[] teamASpawnPoints;
     public Transform[] teamBSpawnPoints;
 
+    public int playersPerTeam;
+
+
     void Start()
     { 
+        currentMode = MatchSettings.selectedMode;
+
+        Debug.Log("Current Mode: " + currentMode);
+
+        currentMode = MatchSettings.selectedMode;
+
+        ConfigureMatch();
         
         if (ball != null && ballRb == null)
             ballRb = ball.GetComponent<Rigidbody2D>();
@@ -118,6 +133,12 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
+
+        var settings = GetModeSettings();
+        if (settings != null)
+            playersPerTeam = settings.playersPerTeam;
+        else
+            playersPerTeam = 0;
     }
 
     void Update()
@@ -419,7 +440,7 @@ public class GameManager : MonoBehaviour
 
     GameModeSettings GetModeSettings()
     {
-        foreach (var setting in modeSettings)
+        foreach (var setting in gameModeSettings)
         {
             if (setting.mode == currentMode)
             {
@@ -486,6 +507,54 @@ public class GameManager : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
                 rb.angularVelocity = 0f;
             }
+        }
+    }
+
+    GameModeSettings GetCurrentModeSettings()
+    {
+        foreach (var mode in gameModeSettings)
+        {
+            if (mode.mode == currentMode)
+                return mode;
+        }
+
+        return null;
+    }
+
+    void ConfigureMatch()
+    {
+        GameModeSettings settings = GetCurrentModeSettings();
+        teamAGoalie.SetActive(settings.useGoalie);
+        teamBGoalie.SetActive(settings.useGoalie);
+
+        if (settings == null)
+        {
+            Debug.LogError("No settings found for " + currentMode);
+            return;
+        }
+
+        Debug.Log(
+            $"Mode: {settings.mode} | Players: {settings.playersPerTeam} | Goalie: {settings.useGoalie}"
+        );
+
+        for (int i = 0; i < teamAPlayers.Length; i++)
+        {
+            bool shouldBeActive = i < settings.playersPerTeam;
+
+            teamAPlayers[i].SetActive(shouldBeActive);
+            teamBPlayers[i].SetActive(shouldBeActive);
+        }
+
+        // Optionally spawn goalies if the mode uses them
+        if (settings.useGoalie)
+        {
+            teamAGoalie.SetActive(true);
+            teamBGoalie.SetActive(true);
+        }
+        else
+        {
+            teamAGoalie.SetActive(false);
+            teamBGoalie.SetActive(false);
         }
     }
 }

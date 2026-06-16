@@ -8,4 +8,13 @@ public static class MatchSettings
 
     public static VehicleController.VehicleType[] homeVehicles;
     public static VehicleController.VehicleType[] awayVehicles;
+
+    public enum GameMode
+    {
+        OneVOne,
+        TwoVTwo,
+        ThreeVThree,
+        FiveVFive
+    }
+
 }
