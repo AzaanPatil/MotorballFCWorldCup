@@ -4,17 +4,25 @@ public static class MatchSettings
 {
     public static GameManager.GameMode selectedMode;
 
-    public static bool playerIsHomeTeam;
+    public static Country selectedCountry;
 
     public static VehicleController.VehicleType[] homeVehicles;
     public static VehicleController.VehicleType[] awayVehicles;
 
-    public enum GameMode
+    public enum Country
     {
-        OneVOne,
-        TwoVTwo,
-        ThreeVThree,
-        FiveVFive
+        USA,
+        Brazil,
+        Germany,
+        Portugul,
+        Argentina,
+        Canada,
+        England,
+        France
     }
+
+    
+
+    
 
 }

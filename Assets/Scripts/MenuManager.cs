@@ -23,8 +23,16 @@ public class MenuManager : MonoBehaviour
         MatchSettings.selectedMode = GameManager.GameMode.FiveVFive;
     }
 
+    public void SelectCountry(int countryIndex)
+    {
+        MatchSettings.selectedCountry =
+            (MatchSettings.Country)countryIndex;
+    }
+    
     public void StartGame()
     {
         SceneManager.LoadScene("GameScene");
     }
+
+    
 }
