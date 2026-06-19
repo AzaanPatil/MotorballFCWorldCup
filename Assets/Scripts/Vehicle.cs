@@ -16,7 +16,8 @@ public class Vehicle : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        gameManager = FindObjectOfType<GameManager>();
+        rb.gravityScale = 0f;
+        gameManager = FindAnyObjectByType<GameManager>();
         if (gameManager != null)
             ball = gameManager.ball;
     }

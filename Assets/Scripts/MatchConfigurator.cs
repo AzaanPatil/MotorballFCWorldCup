@@ -17,53 +17,7 @@ public class MatchConfigurator : MonoBehaviour
         ConfigureMatch();
     }
 
-    void ConfigureMatch()
-    {
-        GameManager.GameMode mode = MatchSettings.selectedMode;
-
-        int playersPerTeam = 1;
-        bool useGoalies = false;
-
-        switch (mode)
-        {
-            case GameManager.GameMode.OneVOne:
-                playersPerTeam = 1;
-                useGoalies = false;
-                break;
-
-            case GameManager.GameMode.TwoVTwo:
-                playersPerTeam = 2;
-                useGoalies = false;
-                break;
-
-            case GameManager.GameMode.ThreeVThree:
-                playersPerTeam = 3;
-                useGoalies = true;
-                break;
-
-            case GameManager.GameMode.FiveVFive:
-                playersPerTeam = 5;
-                useGoalies = true;
-                break;
-        }
-
-        ConfigureVehicles(teamAPlayers, playersPerTeam);
-        ConfigureVehicles(teamBPlayers, playersPerTeam);
-
-        if (teamAGoalie != null)
-            teamAGoalie.SetActive(useGoalies);
-
-        if (teamBGoalie != null)
-            teamBGoalie.SetActive(useGoalies);
-
-        Debug.Log($"Configured {mode}");
-    }
-
-    void ConfigureVehicles(GameObject[] vehicles, int activeCount)
-    {
-        for (int i = 0; i < vehicles.Length; i++)
-        {
-            vehicles[i].SetActive(i < activeCount);
-        }
-    }
+    // Configuration is handled entirely by GameManager.ConfigureMatch().
+    // This script is kept as a placeholder; its arrays are no longer used.
+    void ConfigureMatch() { }
 }

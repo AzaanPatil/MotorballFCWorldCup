@@ -2,7 +2,14 @@ using UnityEngine;
 
 public class CountryManager : MonoBehaviour
 {
+    public static CountryManager Instance { get; private set; }
+
     public CountryData[] countries;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     public CountryData GetCountryData(
         MatchSettings.Country country)
@@ -18,17 +25,31 @@ public class CountryManager : MonoBehaviour
 
     void Start()
     {
-        CountryData data =
+        CountryData homeData =
             GetCountryData(
-                MatchSettings.selectedCountry);
+                MatchSettings.homeCountry);
 
-        if(data != null)
+        CountryData awayData =
+            GetCountryData(
+                MatchSettings.awayCountry);
+
+        if (homeData != null)
         {
             Debug.Log(
-                "Selected Country: " +
-                data.countryName +
+                "Home Country: " +
+                homeData.country +
                 " (" +
-                data.abbreviation +
+                homeData.abbreviation +
+                ")");
+        }
+
+        if (awayData != null)
+        {
+            Debug.Log(
+                "Away Country: " +
+                awayData.country +
+                " (" +
+                awayData.abbreviation +
                 ")");
         }
     }

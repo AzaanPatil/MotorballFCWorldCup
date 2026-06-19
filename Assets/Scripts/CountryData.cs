@@ -9,7 +9,8 @@ public class CountryData
 
     public Sprite flag;
 
-    public Color primaryColor;
+    public Color homeColor;
+    public Color awayColor;
 
     public float speedMultiplier = 1f;
     public float accelerationMultiplier = 1f;

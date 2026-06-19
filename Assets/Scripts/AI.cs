@@ -8,14 +8,22 @@ public class AI : MonoBehaviour
     public Transform opponentGoal;
     
     public Transform ball;
-    public float speed = 20f;
-    public float acceleration = 40f;
+    public float speed = 50f;
+    public float acceleration = 75f;
 
     private Rigidbody2D rb;
 
     void Start()
     {
+        // VehicleController handles all movement when present — don't fight it
+        if (TryGetComponent<VehicleController>(out _))
+        {
+            enabled = false;
+            return;
+        }
+
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0f;
     }
 
     void FixedUpdate()
@@ -106,25 +114,19 @@ public class AI : MonoBehaviour
 
     VehicleController GetNearestTeammate()
     {
-        VehicleController[] all = FindObjectsOfType<VehicleController>();
+        if (!TryGetComponent<VehicleController>(out var myVC)) return null;
 
+        VehicleController[] all = FindObjectsByType<VehicleController>();
         VehicleController closest = null;
         float closestDist = float.MaxValue;
 
         foreach (var v in all)
         {
-            if (v.transform == transform) continue;
-            if (v.team != GetComponent<VehicleController>().team) continue;
-
+            if (v.transform == transform || v.team != myVC.team) continue;
             float dist = Vector2.Distance(transform.position, v.transform.position);
-
-            if (dist < closestDist)
-            {
-                closestDist = dist;
-                closest = v;
-            }
+            if (dist < closestDist) { closestDist = dist; closest = v; }
         }
 
         return closest;
-}
+    }
 }

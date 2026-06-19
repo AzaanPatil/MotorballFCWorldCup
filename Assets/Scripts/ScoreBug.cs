@@ -8,6 +8,8 @@ public class Scorebug : MonoBehaviour
     [Header("TeamName UI")]
     public TextMeshProUGUI teamANameText;
     public TextMeshProUGUI teamBNameText;
+    public Sprite teamAFlag;
+    public Sprite teamBFlag;
 
     [Header("Score UI")]
     public TextMeshProUGUI teamAScoreText;
@@ -17,6 +19,16 @@ public class Scorebug : MonoBehaviour
     public TextMeshProUGUI timerText;
 
     
+    void Start()
+    {
+        if (gameManager == null)
+            gameManager = FindAnyObjectByType<GameManager>();
+
+        // Hide entirely in scenes that have no GameManager (e.g. main menu)
+        if (gameManager == null)
+            gameObject.SetActive(false);
+    }
+
     string GetAbbreviation(string name)
     {
         if (string.IsNullOrEmpty(name))
@@ -35,7 +47,14 @@ public class Scorebug : MonoBehaviour
         //Displays team names
         teamANameText.text = GetAbbreviation(gameManager.teamA.teamName);
         teamBNameText.text = GetAbbreviation(gameManager.teamB.teamName);
+
+        //Show team flags under team names
+        if (gameManager.teamA.teamFlag != null)
+            teamANameText.text = $"<sprite name=\"{gameManager.teamA.teamFlag.name}\" tint=1>{teamANameText.text}";
         
+        if (gameManager.teamB.teamFlag != null)
+            teamBNameText.text = $"<sprite name=\"{gameManager.teamB.teamFlag.name}\" tint=1>{teamBNameText.text}";
+
         if (gameManager.currentState == GameManager.GameState.GameOver)
         {
             timerText.text = ""; // hide timer

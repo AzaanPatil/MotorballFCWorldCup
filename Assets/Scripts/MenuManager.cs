@@ -3,30 +3,28 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public void Set1v1()
+    public void SelectGameMode(int modeIndex)
     {
-        MatchSettings.selectedMode = GameManager.GameMode.OneVOne;
+        MatchSettings.selectedMode =
+            (GameManager.GameMode)modeIndex;
+
+        Debug.Log("Mode: " + MatchSettings.selectedMode);
     }
 
-    public void Set2v2()
+    public void SelectHomeCountry(int countryIndex)
     {
-        MatchSettings.selectedMode = GameManager.GameMode.TwoVTwo;
-    }
-
-    public void Set3v3()
-    {
-        MatchSettings.selectedMode = GameManager.GameMode.ThreeVThree;
-    }
-
-    public void Set5v5()
-    {
-        MatchSettings.selectedMode = GameManager.GameMode.FiveVFive;
-    }
-
-    public void SelectCountry(int countryIndex)
-    {
-        MatchSettings.selectedCountry =
+        MatchSettings.homeCountry =
             (MatchSettings.Country)countryIndex;
+
+        Debug.Log("Home: " + MatchSettings.homeCountry);
+    }
+
+    public void SelectAwayCountry(int countryIndex)
+    {
+        MatchSettings.awayCountry =
+            (MatchSettings.Country)countryIndex;
+
+        Debug.Log("Away: " + MatchSettings.awayCountry);
     }
     
     public void StartGame()

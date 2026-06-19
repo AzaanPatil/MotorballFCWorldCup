@@ -1,29 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Central game manager. Handles score, time, state, kickoff, and active player control.
-// Uses VehicleController for dynamic player switching based on proximity to ball.
 public class GameManager : MonoBehaviour
 {
-    public enum GameState
-    {
-        Kickoff,
-        Playing,
-        Goal,
-        Paused,
-        GameOver
-    }
+    public enum GameState { Kickoff, Playing, Goal, Paused, GameOver }
 
-    public enum GameMode
-    {
-        OneVOne,
-        TwoVTwo,
-        ThreeVThree,
-        FiveVFive
-    }
+    public enum GameMode { OneVOne, TwoVTwo, ThreeVThree, FiveVFive }
 
     [System.Serializable]
-    // Serializable settings for each game mode so they can be configured in the Inspector
     public class GameModeSettings
     {
         public GameMode mode;
@@ -32,37 +16,43 @@ public class GameManager : MonoBehaviour
         public bool useGoalie;
     }
 
-
+    // One entry per mode. Drag each mode's SpawnPoints child object's spawn Transforms here.
     [System.Serializable]
     public class TeamSpawnGroup
     {
         public GameMode mode;
-
         public Transform[] teamASpawns;
         public Transform[] teamBSpawns;
         public Transform teamAGoalieSpawn;
         public Transform teamBGoalieSpawn;
     }
 
-    public TeamSpawnGroup[] spawnGroups;
-
     [Header("Game Mode")]
     public GameMode currentMode;
-
-    //This is a reference to class GameModeSettings, which is a serializable class that holds settings for each game mode. It allows us to easily configure different modes in the Unity Inspector.
     public GameModeSettings[] gameModeSettings;
 
+    [Header("Teams")]
     public TeamData teamA;
     public TeamData teamB;
 
+    // Assign Player1–Player5 in order for each team. The first N are activated for the selected mode.
+    [Header("Team A Vehicles")]
     public GameObject[] teamAPlayers;
-    public GameObject[] teamBPlayers;
-
     public GameObject teamAGoalie;
+
+    [Header("Team B Vehicles")]
+    public GameObject[] teamBPlayers;
     public GameObject teamBGoalie;
 
-    public Transform teamASpawn;
-    public Transform teamBSpawn;
+    // One entry per mode — drag the spawn-point Transforms for each mode here.
+    [Header("Spawn Points (per mode)")]
+    public TeamSpawnGroup[] spawnGroups;
+
+    [Header("Goals (for AI targeting)")]
+    // Assign the goal that Team A shoots AT (i.e. GoalB — Team B's net)
+    public Transform teamAShootsAt;
+    // Assign the goal that Team B shoots AT (i.e. GoalA — Team A's net)
+    public Transform teamBShootsAt;
 
     [Header("Game State")]
     public GameState currentState = GameState.Kickoff;
@@ -88,57 +78,53 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Control")]
     public VehicleController.Team playerTeam = VehicleController.Team.Friendly;
-
     public VehicleController activePlayer;
-    private VehicleController[] allVehicles;
-    private float goalTimer;
-
-    private float lastSwitchTime = 0f;
     public float switchCooldown = 0.3f;
 
-    [Header("Spawn Points")]
-    public Transform[] teamASpawnPoints;
-    public Transform[] teamBSpawnPoints;
-
-    public int playersPerTeam;
-
+    private VehicleController[] allVehicles;
+    private float goalTimer;
+    private float lastSwitchTime;
 
     void Start()
-    { 
+    {
         currentMode = MatchSettings.selectedMode;
 
-        Debug.Log("Current Mode: " + currentMode);
-
-        currentMode = MatchSettings.selectedMode;
-
-        ConfigureMatch();
-        
         if (ball != null && ballRb == null)
             ballRb = ball.GetComponent<Rigidbody2D>();
 
-        // Find all vehicles at startup
-        allVehicles = FindObjectsOfType<VehicleController>();
-        
-        ResetGame();
-        StartKickoff();
-        AssignTeams();
-        UpdateUI();
-        SetMessage("Ready for kickoff");
+        // Step 1: activate/deactivate vehicles for this mode
+        ConfigureMatch();
 
-        foreach (var vehicle in allVehicles)
+        // Step 2: collect only the now-active VehicleControllers
+        allVehicles = FindObjectsByType<VehicleController>();
+
+        // Step 3: auto-assign each vehicle's opponent goal based on team
+        foreach (var v in allVehicles)
+            v.opponentGoal = (v.team == VehicleController.Team.Friendly) ? teamAShootsAt : teamBShootsAt;
+
+        // Step 4: reset scores, positions, and ball
+        teamAScore = 0;
+        teamBScore = 0;
+        gameTime = 0f;
+        goalTimer = 0f;
+        ResetRound();
+        UpdateUI();
+
+        // Step 5: give player control to the first active friendly non-goalie vehicle
+        foreach (var v in allVehicles)
+            v.SetPlayerControlled(false);
+
+        foreach (var v in allVehicles)
         {
-            if (vehicle.team == playerTeam)
+            if (v.team == playerTeam && v.gameObject.activeSelf && !v.isGoalie)
             {
-                SetActivePlayer(vehicle);
+                SetActivePlayer(v);
                 break;
             }
         }
 
-        var settings = GetModeSettings();
-        if (settings != null)
-            playersPerTeam = settings.playersPerTeam;
-        else
-            playersPerTeam = 0;
+        currentState = GameState.Playing;
+        SetMessage("Playing");
     }
 
     void Update()
@@ -146,28 +132,18 @@ public class GameManager : MonoBehaviour
         if (currentState == GameState.Playing)
         {
             gameTime += Time.deltaTime;
-            
-            // Auto-switch player control to the closest friendly vehicle
-            //UpdateActivePlayer();
-
             if (gameTime >= gameDuration)
-            {
                 EndGame();
-            }
         }
         else if (currentState == GameState.Goal)
         {
             goalTimer += Time.deltaTime;
             if (goalTimer >= goalPauseDuration)
-            {
                 StartKickoff();
-            }
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
-        {
             SwitchPlayer();
-        }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -176,11 +152,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // ── Public match flow ───────────────────────────────────────────────────
+
     public void StartMatch()
     {
         ResetGame();
-        currentState = GameState.Kickoff;
-        SetMessage("Kickoff");
         StartKickoff();
     }
 
@@ -190,79 +166,51 @@ public class GameManager : MonoBehaviour
         currentState = GameState.Playing;
         goalTimer = 0f;
         SetMessage("Playing");
-        if (audioManager != null)
-            audioManager.PlayKickoff();
+        if (audioManager != null) audioManager.PlayKickoff();
     }
 
     public void PauseGame()
     {
-        if (currentState == GameState.Playing)
-        {
-            currentState = GameState.Paused;
-            SetMessage("Paused");
-        }
+        if (currentState != GameState.Playing) return;
+        currentState = GameState.Paused;
+        SetMessage("Paused");
     }
 
     public void ResumeGame()
     {
-        if (currentState == GameState.Paused)
-        {
-            currentState = GameState.Playing;
-            SetMessage("Playing");
-        }
+        if (currentState != GameState.Paused) return;
+        currentState = GameState.Playing;
+        SetMessage("Playing");
     }
 
     public void EndGame()
     {
         currentState = GameState.GameOver;
-
-        string winnerMessage;
-
-        if (teamAScore > teamBScore)
-            winnerMessage = teamA.teamName + " WINS!!!";
-        else if (teamBScore > teamAScore)
-            winnerMessage = teamB.teamName + " WINS!!!";
-        else
-            winnerMessage = "DRAW!";
-
-        SetMessage(winnerMessage);
+        if (teamAScore > teamBScore)      SetMessage(teamA.teamName + " WINS!!!");
+        else if (teamBScore > teamAScore) SetMessage(teamB.teamName + " WINS!!!");
+        else                              SetMessage("DRAW!");
     }
 
     public void GoalScored(bool teamAScored)
     {
-        if (currentState == GameState.GameOver)
-            return;
+        if (currentState == GameState.GameOver) return;
 
-        if (teamAScored)
-            teamAScore++;
-        else
-            teamBScore++;
+        if (teamAScored) teamAScore++; else teamBScore++;
 
         UpdateUI();
         currentState = GameState.Goal;
         goalTimer = 0f;
-        SetMessage($"Goal! {(teamAScored ? "Team A" : "Team B")} scored");
-        if (audioManager != null)
-            audioManager.PlayGoal();
+        SetMessage($"Goal! {(teamAScored ? teamA.teamName : teamB.teamName)} scored!");
+        if (audioManager != null) audioManager.PlayGoal();
 
         if (useScoreLimit && (teamAScore >= winningScore || teamBScore >= winningScore))
-        {
             EndGame();
-        }
     }
 
     public void ResetRound()
     {
-
-    int aIndex = 0;
-    int bIndex = 0;
-    ballRb.angularVelocity = 0f;
-
-        // Reset ball
         if (ball != null)
-        {
-            ball.position = (kickoffPoint != null) ? kickoffPoint.position : Vector3.zero;
-        }
+            ball.position = kickoffPoint != null ? kickoffPoint.position : Vector3.zero;
 
         if (ballRb != null)
         {
@@ -271,30 +219,6 @@ public class GameManager : MonoBehaviour
         }
 
         SpawnPlayers();
-
-        // Reset players
-        VehicleController[] vehicles = FindObjectsOfType<VehicleController>();
-
-        foreach (var v in vehicles)
-        {
-            if (v.team == VehicleController.Team.Friendly && aIndex < teamASpawnPoints.Length)
-            {
-                v.transform.position = teamASpawnPoints[aIndex].position;
-                aIndex++;
-            }
-            else if (v.team == VehicleController.Team.Opponent && bIndex < teamBSpawnPoints.Length)
-            {
-                v.transform.position = teamBSpawnPoints[bIndex].position;
-                bIndex++;
-            }
-
-            Rigidbody2D rb = v.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.linearVelocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-            }
-        }
     }
 
     public void ResetGame()
@@ -309,252 +233,151 @@ public class GameManager : MonoBehaviour
         SetMessage("Ready");
     }
 
-    private void UpdateUI()
-    {
-        if (scoreText != null)
-            scoreText.text = $"{teamAScore} - {teamBScore}";
-    }
-
-    private void SetMessage(string message)
-    {
-        if (messageText != null)
-            messageText.text = message;
-    }
+    // ── Player control ──────────────────────────────────────────────────────
 
     public void SetActivePlayer(VehicleController player)
     {
-        if (activePlayer == player)
-            return;
-
-        // Disable control on previous player
-        if (activePlayer != null)
-            activePlayer.SetPlayerControlled(false);
-
-        // Enable control on new player
+        if (activePlayer == player) return;
+        if (activePlayer != null) activePlayer.SetPlayerControlled(false);
         activePlayer = player;
-        if (activePlayer != null)
-            activePlayer.SetPlayerControlled(true);
-    }
-
-    /// Automatically finds and switches to the closest friendly vehicle to the ball.
-    //private void UpdateActivePlayer()
-    //{
-    //    if (allVehicles == null || allVehicles.Length == 0)
-    //        return;
-
-    //    VehicleController closestFriendly = null;
-    //    float closestDistance = float.MaxValue;
-
-    //    foreach (var vehicle in allVehicles)
-    //    {
-            // Only consider friendly team vehicles
-    //        if (vehicle.team != playerTeam)
-    //            continue;
-
-    //        float distance = vehicle.DistanceToBall();
-    //        if (distance < closestDistance)
-    //        {
-    //            closestDistance = distance;
-    //            closestFriendly = vehicle;
-    //        }
-    //    }
-
-        // Switch to closest friendly vehicle
-    //    if (closestFriendly != null && closestFriendly != activePlayer)
-    //    {
-    //        SetActivePlayer(closestFriendly);
-    //    }
-    //}
-
-    /// Assigns team affiliations to all vehicles.
-    void AssignTeams()
-    {
-        if (allVehicles == null || allVehicles.Length == 0)
-            allVehicles = FindObjectsOfType<VehicleController>();
-
-        //foreach (var vehicle in allVehicles)
-        //{
-            // Assign teams: half friendly, half opponent
-            // Or use a more sophisticated system based on initial setup
-            //if (vehicle.team == playerTeam)
-            //{
-            //    vehicle.SetPlayerControlled(false); // AI by default
-            //}
-        //}
-
-        // Activate the first friendly vehicle
-        //foreach (var vehicle in allVehicles)
-        //{
-        //    if (vehicle.team == playerTeam)
-        //    {
-        //        SetActivePlayer(vehicle);
-        //        break;
-        //    }
-        //}
+        if (activePlayer != null) activePlayer.SetPlayerControlled(true);
     }
 
     public void SetPlayerTeam(VehicleController.Team selectedTeam)
     {
         playerTeam = selectedTeam;
-        AssignTeams();
+        if (allVehicles == null || allVehicles.Length == 0)
+            allVehicles = FindObjectsByType<VehicleController>();
     }
 
     void SwitchPlayer()
     {
-        
-        
-        if (allVehicles == null || allVehicles.Length == 0)
-            return;
+        if (allVehicles == null) return;
+        if (Time.time - lastSwitchTime < switchCooldown) return;
 
-        VehicleController bestChoice = null;
-        float closestDistance = float.MaxValue;
+        VehicleController best = null;
+        float closestDist = float.MaxValue;
 
-        foreach (var vehicle in allVehicles)
+        foreach (var v in allVehicles)
         {
-            // Only teammates
-            if (vehicle.team != playerTeam)
-                continue;
-
-            float distance = vehicle.DistanceToBall();
-
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                bestChoice = vehicle;
-            }
+            if (v.team != playerTeam || v == activePlayer || v.isGoalie) continue;
+            float d = v.DistanceToBall();
+            if (d < closestDist) { closestDist = d; best = v; }
         }
 
-        if (bestChoice != null)
+        if (best != null)
         {
-            SetActivePlayer(bestChoice);
-        }
-
-        if (bestChoice == activePlayer)
-        return;
-
-        if (Time.time - lastSwitchTime < switchCooldown)
-            return;
-
-        lastSwitchTime = Time.time;
-    }
-
-    GameModeSettings GetModeSettings()
-    {
-        foreach (var setting in gameModeSettings)
-        {
-            if (setting.mode == currentMode)
-            {
-                return setting;
-            }
-        }
-        return null;
-    }
-
-    void SpawnPlayers()
-    {
-        GameModeSettings settings = GetModeSettings();
-
-        TeamSpawnGroup group = null;
-
-        foreach (var g in spawnGroups)
-        {
-            if (g.mode == currentMode)
-            {
-                group = g;
-                break;
-            }
-        }
-
-        if (group == null || settings == null)
-            return;
-
-        VehicleController[] vehicles = FindObjectsOfType<VehicleController>();
-
-        int aIndex = 0;
-        int bIndex = 0;
-
-        foreach (var v in vehicles)
-        {
-            Rigidbody2D rb = v.GetComponent<Rigidbody2D>();
-
-            if (v.team == VehicleController.Team.Friendly)
-            {
-                if (aIndex < settings.playersPerTeam)
-                {
-                    v.transform.position = group.teamASpawns[aIndex].position;
-                    aIndex++;
-                }
-                else if (settings.useGoalie)
-                {
-                    v.transform.position = group.teamAGoalieSpawn.position;
-                }
-            }
-            else
-            {
-                if (bIndex < settings.playersPerTeam)
-                {
-                    v.transform.position = group.teamBSpawns[bIndex].position;
-                    bIndex++;
-                }
-                else if (settings.useGoalie)
-                {
-                    v.transform.position = group.teamBGoalieSpawn.position;
-                }
-            }
-
-            if (rb != null)
-            {
-                rb.linearVelocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-            }
+            SetActivePlayer(best);
+            lastSwitchTime = Time.time;
         }
     }
+
+    // ── Match configuration ─────────────────────────────────────────────────
 
     GameModeSettings GetCurrentModeSettings()
     {
-        foreach (var mode in gameModeSettings)
-        {
-            if (mode.mode == currentMode)
-                return mode;
-        }
+        if (gameModeSettings != null)
+            foreach (var s in gameModeSettings)
+                if (s.mode == currentMode) return s;
 
+        int perTeam = currentMode switch
+        {
+            GameMode.OneVOne     => 1,
+            GameMode.TwoVTwo     => 2,
+            GameMode.ThreeVThree => 3,
+            GameMode.FiveVFive   => 5,
+            _                    => 1
+        };
+        Debug.LogWarning($"gameModeSettings not configured for {currentMode} — using defaults ({perTeam} per team). Configure in Inspector to override.");
+        return new GameModeSettings { mode = currentMode, matchDuration = gameDuration, useGoalie = false, playersPerTeam = perTeam };
+    }
+
+    TeamSpawnGroup GetSpawnGroup()
+    {
+        if (spawnGroups == null) return null;
+        foreach (var g in spawnGroups)
+            if (g.mode == currentMode) return g;
         return null;
     }
 
     void ConfigureMatch()
     {
         GameModeSettings settings = GetCurrentModeSettings();
-        teamAGoalie.SetActive(settings.useGoalie);
-        teamBGoalie.SetActive(settings.useGoalie);
-
-        if (settings == null)
-        {
-            Debug.LogError("No settings found for " + currentMode);
-            return;
-        }
-
-        Debug.Log(
-            $"Mode: {settings.mode} | Players: {settings.playersPerTeam} | Goalie: {settings.useGoalie}"
-        );
+        int needed = settings.playersPerTeam;
 
         for (int i = 0; i < teamAPlayers.Length; i++)
-        {
-            bool shouldBeActive = i < settings.playersPerTeam;
+            if (teamAPlayers[i] != null) teamAPlayers[i].SetActive(i < needed);
 
-            teamAPlayers[i].SetActive(shouldBeActive);
-            teamBPlayers[i].SetActive(shouldBeActive);
-        }
+        if (teamAGoalie != null) teamAGoalie.SetActive(settings.useGoalie);
 
-        // Optionally spawn goalies if the mode uses them
+        for (int i = 0; i < teamBPlayers.Length; i++)
+            if (teamBPlayers[i] != null) teamBPlayers[i].SetActive(i < needed);
+
+        if (teamBGoalie != null) teamBGoalie.SetActive(settings.useGoalie);
+
+        Debug.Log($"Match configured: {currentMode} — {needed}v{needed}, goalie={settings.useGoalie}");
+    }
+
+    void SpawnPlayers()
+    {
+        GameModeSettings settings = GetCurrentModeSettings();
+        int needed = settings.playersPerTeam;
+        TeamSpawnGroup group = GetSpawnGroup();
+
+        Transform[] spawnA        = group?.teamASpawns      ?? System.Array.Empty<Transform>();
+        Transform[] spawnB        = group?.teamBSpawns      ?? System.Array.Empty<Transform>();
+        Transform   goalieSpawnA  = group?.teamAGoalieSpawn;
+        Transform   goalieSpawnB  = group?.teamBGoalieSpawn;
+
+        for (int i = 0; i < teamAPlayers.Length && i < needed; i++)
+            PlaceVehicle(teamAPlayers[i], spawnA, i);
+
         if (settings.useGoalie)
+            PlaceVehicle(teamAGoalie, goalieSpawnA);
+
+        for (int i = 0; i < teamBPlayers.Length && i < needed; i++)
+            PlaceVehicle(teamBPlayers[i], spawnB, i);
+
+        if (settings.useGoalie)
+            PlaceVehicle(teamBGoalie, goalieSpawnB);
+    }
+
+    void PlaceVehicle(GameObject go, Transform[] points, int index)
+    {
+        if (go == null || !go.activeSelf) return;
+        Transform pt = (points != null && index < points.Length) ? points[index] : null;
+        PlaceAt(go, pt);
+    }
+
+    void PlaceVehicle(GameObject go, Transform point)
+    {
+        if (go == null || !go.activeSelf) return;
+        PlaceAt(go, point);
+    }
+
+    void PlaceAt(GameObject go, Transform point)
+    {
+        if (point != null)
+            go.transform.SetPositionAndRotation(point.position, point.rotation);
+
+        if (go.TryGetComponent<Rigidbody2D>(out var rb))
         {
-            teamAGoalie.SetActive(true);
-            teamBGoalie.SetActive(true);
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
         }
-        else
-        {
-            teamAGoalie.SetActive(false);
-            teamBGoalie.SetActive(false);
-        }
+    }
+
+    // ── UI helpers ──────────────────────────────────────────────────────────
+
+    void UpdateUI()
+    {
+        if (scoreText != null)
+            scoreText.text = $"{teamAScore} - {teamBScore}";
+    }
+
+    void SetMessage(string message)
+    {
+        if (messageText != null)
+            messageText.text = message;
     }
 }

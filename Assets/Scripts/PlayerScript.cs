@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
 	// Max player speed and how quickly velocity moves toward target.
-	public float maxSpeed = 6f;
-	public float acceleration = 30f;
+	public float maxSpeed = 50f;
+	public float acceleration = 75f;
 	public string horizontalAxis = "Horizontal";
 	public string verticalAxis = "Vertical";
 
@@ -16,9 +16,11 @@ public class PlayerScript : MonoBehaviour
 
 	void Awake()
 	{
-		// Cache the rigidbody and record the starting position for resets.
 		rb = GetComponent<Rigidbody2D>();
 		initialPosition = transform.position;
+		// VehicleController handles movement when present — don't fight it
+		if (TryGetComponent<VehicleController>(out _))
+			enabled = false;
 	}
 
 	void FixedUpdate()

@@ -42,6 +42,10 @@ public class VehicleController : MonoBehaviour
 
     [Header("Control")]
     public bool isPlayerControlled = false;
+    public bool isGoalie = false; // Prevents player from switching to this vehicle; VehicleController skips AI movement so Tank.cs can drive the goalie
+
+    [Header("AI Goals")]
+    public Transform opponentGoal; // Assign the opponent's goal Transform so AI kicks toward it
 
     private Rigidbody2D rb;
     private GameManager gameManager;
@@ -66,9 +70,11 @@ public class VehicleController : MonoBehaviour
     {
         currentBoost = maxBoost;
         rb = GetComponent<Rigidbody2D>();
-        gameManager = FindObjectOfType<GameManager>();
+        rb.gravityScale = 0f;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        gameManager = FindAnyObjectByType<GameManager>();
         if (gameManager != null)
-            ball = gameManager.ball;    
+            ball = gameManager.ball;
 
         void ApplyVehicleStats()
         {
@@ -137,71 +143,77 @@ public class VehicleController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Cancel any spin imparted by collisions — rotation is set directly via RotateToward
+        rb.angularVelocity = 0f;
+
         if (isPlayerControlled)
-        {
             MovePlayer();
-        }
         else
-        {
             MoveAI();
-        }
     }
 
-    /// Player-controlled movement: smooth acceleration toward target direction.
     private void MovePlayer()
     {
         if (playerInput.sqrMagnitude > 0.01f)
         {
-            float speed = maxSpeed;
-
             if (isBoosting)
-            {
-                speed *= boostMultiplier;
-                currentBoost -= boostDrainRate * Time.deltaTime;
-                rb.AddForce(playerInput.normalized * 2f, ForceMode2D.Force);
-            }
+                currentBoost -= boostDrainRate * Time.fixedDeltaTime;
             else
-            {
-                currentBoost += boostRechargeRate * Time.deltaTime;
-            }
-
+                currentBoost += boostRechargeRate * Time.fixedDeltaTime;
             currentBoost = Mathf.Clamp(currentBoost, 0f, maxBoost);
-            
-            // Calculate target velocity in the input direction
-            Vector2 targetVelocity = playerInput.normalized * maxSpeed;
-            rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
 
-            // Rotate to face movement direction
+            // Direct velocity assignment: car instantly goes the direction you press
+            float speed = isBoosting ? maxSpeed * boostMultiplier : maxSpeed;
+            rb.linearVelocity = playerInput.normalized * speed;
             RotateToward(playerInput);
         }
         else
         {
-            // Smooth deceleration when no input
-            rb.linearVelocity = Vector2.MoveTowards(
-                rb.linearVelocity,
-                Vector2.zero,
-                acceleration * 0.1f * Time.fixedDeltaTime
-            );
+            currentBoost = Mathf.Min(currentBoost + boostRechargeRate * Time.fixedDeltaTime, maxBoost);
+            // Decelerate to stop when no input
+            rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, Vector2.zero, acceleration * Time.fixedDeltaTime);
         }
     }
 
-    /// AI movement: moves toward the ball at a slightly reduced speed.
     private void MoveAI()
     {
+        // Goalies have their own movement script (Tank.cs) — don't override it
+        if (isGoalie) return;
+
+        if (gameManager != null && gameManager.currentState != GameManager.GameState.Playing)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         if (ball == null)
         {
             rb.linearVelocity = Vector2.zero;
             return;
         }
 
-        // Calculate direction to ball
-        Vector2 directionToBall = (ball.position - transform.position).normalized;
+        float distToBall = Vector2.Distance(transform.position, ball.position);
+        Vector2 moveTarget;
 
-        // Move toward ball at AI speed
-        rb.linearVelocity = directionToBall * aiSpeed;
+        if (distToBall > 1.5f)
+        {
+            // Chase the ball
+            moveTarget = ball.position;
+        }
+        else if (opponentGoal != null)
+        {
+            // Close to ball: drive through it toward the goal so it gets pushed there
+            moveTarget = opponentGoal.position;
+        }
+        else
+        {
+            // No goal assigned: keep pushing the ball in the same direction we arrived from
+            moveTarget = (Vector2)ball.position + (Vector2)(ball.position - transform.position).normalized * 3f;
+        }
 
-        // Rotate to face the ball
-        RotateToward(directionToBall);
+        Vector2 direction = (moveTarget - (Vector2)transform.position).normalized;
+        rb.linearVelocity = direction * aiSpeed;
+        RotateToward(direction);
     }
 
     /// Rotates this vehicle to face a given direction.
@@ -250,8 +262,7 @@ public class VehicleController : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, ball.position);
 
-        // Only hit if close enough
-        if (distance < 2f)
+        if (distance < 2.5f)
         {
             Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
             if (ballRb != null)
@@ -284,7 +295,7 @@ public class VehicleController : MonoBehaviour
             return;
 
         // Find nearest teammate
-        VehicleController[] allVehicles = FindObjectsOfType<VehicleController>();
+        VehicleController[] allVehicles = FindObjectsByType<VehicleController>();
 
         VehicleController nearestTeammate = null;
         float closestDist = float.MaxValue;
@@ -331,5 +342,31 @@ public class VehicleController : MonoBehaviour
         ballRb.AddForce(direction * passForce, ForceMode2D.Impulse);
 
         lastPassTime = Time.time;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (ball == null || col.transform != ball) return;
+
+        Rigidbody2D ballRb = col.rigidbody;
+        if (ballRb == null) return;
+
+        // AI kicks toward the opponent goal; player collision just deflects naturally
+        Vector2 direction = (!isPlayerControlled && opponentGoal != null)
+            ? ((Vector2)opponentGoal.position - (Vector2)ball.position).normalized
+            : ((Vector2)ball.position - (Vector2)transform.position).normalized;
+
+        float force = hitForce * 0.4f;
+        if (isBoosting) force *= 1.5f;
+        ballRb.AddForce(direction * force, ForceMode2D.Impulse);
+    }
+
+    public void SetTeamColor(Color color)
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = color;
+        }
     }
 }

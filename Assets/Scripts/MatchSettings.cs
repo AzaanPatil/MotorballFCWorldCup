@@ -4,7 +4,8 @@ public static class MatchSettings
 {
     public static GameManager.GameMode selectedMode;
 
-    public static Country selectedCountry;
+    public static Country homeCountry = Country.USA;
+    public static Country awayCountry = Country.England;
 
     public static VehicleController.VehicleType[] homeVehicles;
     public static VehicleController.VehicleType[] awayVehicles;
@@ -14,7 +15,7 @@ public static class MatchSettings
         USA,
         Brazil,
         Germany,
-        Portugul,
+        Portugal,
         Argentina,
         Canada,
         England,
