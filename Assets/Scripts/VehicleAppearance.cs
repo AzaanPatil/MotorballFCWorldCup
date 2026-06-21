@@ -1,24 +1,52 @@
 using UnityEngine;
 
+[System.Serializable]
+public struct VehicleTypeSprite
+{
+    public VehicleController.VehicleType vehicleType;
+    public Sprite sprite;
+}
+
 public class VehicleAppearance : MonoBehaviour
 {
+    [Tooltip("The vehicle's body SpriteRenderer. Leave empty to auto-find on the same GameObject.")]
     public SpriteRenderer body;
 
-    // Create method to apply team color to every vehicle's body sprite TeamA is the away team, TeamB is the home team.
-    public void ApplyTeamColor(VehicleController.Team team)
+    [Tooltip("Map each selectable vehicle type to its sprite. Set this up once per vehicle in the Inspector.")]
+    public VehicleTypeSprite[] vehicleSprites;
+
+    void Awake()
     {
         if (body == null)
-            return;
+            body = GetComponent<SpriteRenderer>();
+    }
 
-        Color teamColor = Color.white; // default color
-
-        if (team == VehicleController.Team.Friendly)
+    // Swaps the sprite for the given vehicle type. Call this before ApplyTeamColor so the tint lands on the right sprite.
+    public void ApplyVehicleType(VehicleController.VehicleType type)
+    {
+        if (body == null) return;
+        foreach (var entry in vehicleSprites)
         {
-            teamColor = CountryManager.Instance.GetCountryData(MatchSettings.homeCountry)?.homeColor ?? Color.white;
+            if (entry.vehicleType == type)
+            {
+                body.sprite = entry.sprite;
+                return;
+            }
         }
-        else if (team == VehicleController.Team.Opponent)
+    }
+
+    // Tints the current sprite with the country's home or away color.
+    public void ApplyTeamColor(VehicleController.Team team)
+    {
+        if (body == null) return;
+
+        Color teamColor = Color.white;
+
+        if (CountryManager.Instance != null)
         {
-            teamColor = CountryManager.Instance.GetCountryData(MatchSettings.awayCountry)?.awayColor ?? Color.white;
+            teamColor = team == VehicleController.Team.Friendly
+                ? CountryManager.Instance.GetCountryData(MatchSettings.homeCountry)?.homeColor ?? Color.white
+                : CountryManager.Instance.GetCountryData(MatchSettings.awayCountry)?.awayColor ?? Color.white;
         }
 
         body.color = teamColor;

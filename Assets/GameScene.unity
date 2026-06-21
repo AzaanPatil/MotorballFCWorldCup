@@ -143,13 +143,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13225931}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
 --- !u!1 &13879973
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,13 +174,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13879973}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: 60, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
 --- !u!1 &27298837
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,13 +205,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27298837}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: 60, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1079737273}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
 --- !u!1 &52870039
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +343,8 @@ MonoBehaviour:
   gameManager: {fileID: 850357074}
   teamANameText: {fileID: 1123685965}
   teamBNameText: {fileID: 1456997050}
+  teamAFlag: {fileID: 0}
+  teamBFlag: {fileID: 0}
   teamAScoreText: {fileID: 568224941}
   teamBScoreText: {fileID: 446397108}
   timerText: {fileID: 862487349}
@@ -371,7 +373,7 @@ Transform:
   m_GameObject: {fileID: 70077016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 80, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -402,7 +404,7 @@ Transform:
   m_GameObject: {fileID: 105921223}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -419,7 +421,7 @@ GameObject:
   - component: {fileID: 131570878}
   - component: {fileID: 131570879}
   m_Layer: 0
-  m_Name: GoalBack
+  m_Name: GoalBackA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,13 +512,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132997776}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: -60, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40}
 --- !u!1 &191749886
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +578,7 @@ Transform:
   m_GameObject: {fileID: 209833930}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 80, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -689,10 +691,10 @@ GameObject:
   - component: {fileID: 389231983}
   - component: {fileID: 389231987}
   - component: {fileID: 389231986}
-  - component: {fileID: 389231985}
+  - component: {fileID: 389231988}
   - component: {fileID: 389231984}
   m_Layer: 0
-  m_Name: Player3
+  m_Name: Player3A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -707,7 +709,7 @@ Transform:
   m_GameObject: {fileID: 389231982}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -729,56 +731,21 @@ MonoBehaviour:
   vehicleType: 0
   hitForce: 10
   hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
+  maxSpeed: 50
+  acceleration: 75
+  aiSpeed: 50
+  ballDetectionRadius: 5
   horizontalAxis: Horizontal
   verticalAxis: Vertical
   isPlayerControlled: 0
+  isGoalie: 0
+  opponentGoal: {fileID: 969958059}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
   passForce: 8
   passCooldown: 0.5
---- !u!70 &389231985
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389231982}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
 --- !u!50 &389231986
 Rigidbody2D:
   serializedVersion: 5
@@ -853,18 +820,55 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.981689, y: 19.970001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!70 &389231988
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389231982}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.0000033378587, y: 0.0000076293913}
+  m_Size: {x: 8.104334, y: 19.97}
+  m_Direction: 0
 --- !u!1 &401998423
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +881,7 @@ GameObject:
   - component: {fileID: 401998426}
   - component: {fileID: 401998425}
   m_Layer: 0
-  m_Name: GoalPosts
+  m_Name: GoalPostsA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1002,7 +1006,7 @@ GameObject:
   - component: {fileID: 446397109}
   - component: {fileID: 446397108}
   m_Layer: 5
-  m_Name: TeamBScore
+  m_Name: TeamAScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1136,6 +1140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 464682540}
+  - component: {fileID: 464682541}
   m_Layer: 0
   m_Name: MatchConfigurator
   m_TagString: Untagged
@@ -1158,6 +1163,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 821328984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &464682541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464682539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f179ba8d4c6f7db4599976ec4a92140b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MatchConfigurator
+  teamAPlayers:
+  - {fileID: 1573891981}
+  - {fileID: 924311599}
+  - {fileID: 389231982}
+  - {fileID: 1477580342}
+  - {fileID: 925606715}
+  teamBPlayers:
+  - {fileID: 1054750220}
+  - {fileID: 532552989}
+  - {fileID: 1847872287}
+  - {fileID: 2144815857}
+  - {fileID: 1296925087}
+  teamAGoalie: {fileID: 2073781220}
+  teamBGoalie: {fileID: 896045158}
 --- !u!1 &469871736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,7 +1232,7 @@ GameObject:
   - component: {fileID: 504576896}
   - component: {fileID: 504576895}
   m_Layer: 0
-  m_Name: Goal
+  m_Name: GoalA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1434,10 +1465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameCamera
   target: {fileID: 1012854093}
-  smoothSpeed: 0.125
-  offset: {x: 0, y: 0, z: -10}
-  minBounds: {x: 0, y: 0}
-  maxBounds: {x: 0, y: 0}
+  smoothSpeed: 5
 --- !u!1 &520801419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,9 +1791,10 @@ GameObject:
   - component: {fileID: 532552994}
   - component: {fileID: 532552993}
   - component: {fileID: 532552992}
-  - component: {fileID: 532552991}
+  - component: {fileID: 532552995}
+  - component: {fileID: 532552996}
   m_Layer: 0
-  m_Name: Player2
+  m_Name: Player2B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1779,42 +1808,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 532552989}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1008161397}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &532552991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532552989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
-  team: 0
-  vehicleType: 0
-  hitForce: 10
-  hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
-  horizontalAxis: Horizontal
-  verticalAxis: Vertical
-  isPlayerControlled: 0
-  boostMultiplier: 2
-  boostDrainRate: 1
-  boostRechargeRate: 0.5
-  maxBoost: 3
-  passForce: 8
-  passCooldown: 0.5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
 --- !u!70 &532552992
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1849,8 +1849,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0.010442731, y: -0.028093332}
+  m_Size: {x: 8.035108, y: 20.009615}
   m_Direction: 0
 --- !u!50 &532552993
 Rigidbody2D:
@@ -1926,18 +1926,68 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.981689, y: 19.970001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &532552995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532552989}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67cd10ab13ff6c4e837fd9bc4b44d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AI
+  isGoalie: 0
+  defendRadius: 5
+  ownGoal: {fileID: 969958059}
+  opponentGoal: {fileID: 504576894}
+  ball: {fileID: 1012854093}
+  speed: 50
+  acceleration: 75
+--- !u!114 &532552996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532552989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
+  team: 1
+  vehicleType: 0
+  hitForce: 10
+  hitCooldown: 0.5
+  maxSpeed: 50
+  acceleration: 75
+  aiSpeed: 45
+  ballDetectionRadius: 5
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  isPlayerControlled: 0
+  isGoalie: 0
+  opponentGoal: {fileID: 504576894}
+  boostMultiplier: 2
+  boostDrainRate: 1
+  boostRechargeRate: 0.5
+  maxBoost: 3
+  passForce: 8
+  passCooldown: 0.5
 --- !u!1 &543388593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,7 +2116,7 @@ Transform:
   m_GameObject: {fileID: 567745034}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 80, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2084,7 +2134,7 @@ GameObject:
   - component: {fileID: 568224942}
   - component: {fileID: 568224941}
   m_Layer: 5
-  m_Name: TeamAScore
+  m_Name: TeamBScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2233,13 +2283,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573774689}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalPosition: {x: -30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!1 &628500480
 GameObject:
   m_ObjectHideFlags: 0
@@ -2339,13 +2389,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701172319}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: -60, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1079737273}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40}
 --- !u!1 &776637347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,7 +2421,7 @@ Transform:
   m_GameObject: {fileID: 776637347}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2402,7 +2452,7 @@ Transform:
   m_GameObject: {fileID: 819873644}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2471,23 +2521,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c3ddc31a2e5284ab1bca33f33b35f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  spawnGroups: []
   currentMode: 0
   gameModeSettings: []
   teamA:
     teamName: 
+    teamFlag: {fileID: 0}
     homeColor: {r: 0, g: 0.2975241, b: 1, a: 1}
     awayColor: {r: 1, g: 1, b: 1, a: 1}
   teamB:
     teamName: 
+    teamFlag: {fileID: 0}
     homeColor: {r: 1, g: 0, b: 0, a: 0}
     awayColor: {r: 1, g: 1, b: 1, a: 1}
-  teamAPlayers: []
-  teamBPlayers: []
-  teamAGoalie: {fileID: 0}
-  teamBGoalie: {fileID: 0}
-  teamASpawn: {fileID: 0}
-  teamBSpawn: {fileID: 0}
+  teamAContainer: {fileID: 0}
+  teamBContainer: {fileID: 0}
+  spawnPointsRoot: {fileID: 850515336}
+  teamAShootsAt: {fileID: 969958059}
+  teamBShootsAt: {fileID: 504576894}
   currentState: 0
   gameTime: 0
   goalPauseDuration: 5
@@ -2503,11 +2553,22 @@ MonoBehaviour:
   messageText: {fileID: 0}
   audioManager: {fileID: 0}
   playerTeam: 0
-  activePlayer: {fileID: 1918049623}
+  activePlayer: {fileID: 1573891983}
   switchCooldown: 0.3
-  teamASpawnPoints: []
-  teamBSpawnPoints: []
-  playersPerTeam: 0
+  teamAPlayers:
+  - {fileID: 1573891981}
+  - {fileID: 924311599}
+  - {fileID: 389231982}
+  - {fileID: 1477580342}
+  - {fileID: 925606715}
+  teamAGoalie: {fileID: 2073781220}
+  teamBPlayers:
+  - {fileID: 1054750220}
+  - {fileID: 532552989}
+  - {fileID: 1847872287}
+  - {fileID: 2144815857}
+  - {fileID: 1296925087}
+  teamBGoalie: {fileID: 896045158}
 --- !u!4 &850357075
 Transform:
   m_ObjectHideFlags: 0
@@ -2751,13 +2812,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888595596}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1679129928}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
 --- !u!1 &896045158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,10 +2830,11 @@ GameObject:
   - component: {fileID: 896045159}
   - component: {fileID: 896045163}
   - component: {fileID: 896045162}
-  - component: {fileID: 896045161}
-  - component: {fileID: 896045160}
+  - component: {fileID: 896045165}
+  - component: {fileID: 896045164}
+  - component: {fileID: 896045166}
   m_Layer: 0
-  m_Name: Goalie
+  m_Name: GoalieB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2787,78 +2849,12 @@ Transform:
   m_GameObject: {fileID: 896045158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 80, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1008161397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &896045160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896045158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
-  team: 0
-  vehicleType: 0
-  hitForce: 10
-  hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
-  horizontalAxis: Horizontal
-  verticalAxis: Vertical
-  isPlayerControlled: 0
-  boostMultiplier: 2
-  boostDrainRate: 1
-  boostRechargeRate: 0.5
-  maxBoost: 3
-  passForce: 8
-  passCooldown: 0.5
---- !u!70 &896045161
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896045158}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
 --- !u!50 &896045162
 Rigidbody2D:
   serializedVersion: 5
@@ -2933,89 +2929,44 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -972747586082640523, guid: 1057942d558761146b753e4777d0943e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 8.54, y: 15.07}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &924311599
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 924311600}
-  - component: {fileID: 924311604}
-  - component: {fileID: 924311603}
-  - component: {fileID: 924311602}
-  - component: {fileID: 924311601}
-  m_Layer: 0
-  m_Name: Player2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &924311600
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924311599}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1918049619}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &924311601
+--- !u!114 &896045164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924311599}
-  m_Enabled: 1
+  m_GameObject: {fileID: 896045158}
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
+  m_Script: {fileID: 11500000, guid: c67cd10ab13ff6c4e837fd9bc4b44d38, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
-  team: 0
-  vehicleType: 0
-  hitForce: 10
-  hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
-  horizontalAxis: Horizontal
-  verticalAxis: Vertical
-  isPlayerControlled: 0
-  boostMultiplier: 2
-  boostDrainRate: 1
-  boostRechargeRate: 0.5
-  maxBoost: 3
-  passForce: 8
-  passCooldown: 0.5
---- !u!70 &924311602
-CapsuleCollider2D:
+  m_EditorClassIdentifier: Assembly-CSharp::AI
+  isGoalie: 1
+  defendRadius: 15
+  ownGoal: {fileID: 969958059}
+  opponentGoal: {fileID: 504576894}
+  ball: {fileID: 1012854093}
+  speed: 20
+  acceleration: 40
+--- !u!61 &896045165
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924311599}
+  m_GameObject: {fileID: 896045158}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -3044,8 +2995,114 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8.54, y: 15.07}
+    newSize: {x: 8.54, y: 15.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 8.54, y: 15.07}
+  m_EdgeRadius: 0
+--- !u!114 &896045166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896045158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
+  team: 1
+  vehicleType: 3
+  hitForce: 10
+  hitCooldown: 0.5
+  maxSpeed: 10
+  acceleration: 30
+  aiSpeed: 10
+  ballDetectionRadius: 15
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  isPlayerControlled: 0
+  isGoalie: 1
+  opponentGoal: {fileID: 504576894}
+  boostMultiplier: 2
+  boostDrainRate: 1
+  boostRechargeRate: 0.5
+  maxBoost: 3
+  passForce: 8
+  passCooldown: 0.5
+--- !u!1 &924311599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 924311600}
+  - component: {fileID: 924311604}
+  - component: {fileID: 924311603}
+  - component: {fileID: 924311601}
+  - component: {fileID: 924311605}
+  m_Layer: 0
+  m_Name: Player2A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &924311600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924311599}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1918049619}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
+--- !u!114 &924311601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924311599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
+  team: 0
+  vehicleType: 0
+  hitForce: 10
+  hitCooldown: 0.5
+  maxSpeed: 50
+  acceleration: 75
+  aiSpeed: 50
+  ballDetectionRadius: 5
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  isPlayerControlled: 0
+  isGoalie: 0
+  opponentGoal: {fileID: 969958059}
+  boostMultiplier: 2
+  boostDrainRate: 1
+  boostRechargeRate: 0.5
+  maxBoost: 3
+  passForce: 8
+  passCooldown: 0.5
 --- !u!50 &924311603
 Rigidbody2D:
   serializedVersion: 5
@@ -3120,89 +3177,25 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.981689, y: 19.970001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &925606715
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 925606716}
-  - component: {fileID: 925606720}
-  - component: {fileID: 925606719}
-  - component: {fileID: 925606718}
-  - component: {fileID: 925606717}
-  m_Layer: 0
-  m_Name: Player5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &925606716
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925606715}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1918049619}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &925606717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925606715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
-  team: 0
-  vehicleType: 0
-  hitForce: 10
-  hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
-  horizontalAxis: Horizontal
-  verticalAxis: Vertical
-  isPlayerControlled: 0
-  boostMultiplier: 2
-  boostDrainRate: 1
-  boostRechargeRate: 0.5
-  maxBoost: 3
-  passForce: 8
-  passCooldown: 0.5
---- !u!70 &925606718
+--- !u!70 &924311605
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925606715}
+  m_GameObject: {fileID: 924311599}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -3230,9 +3223,75 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0.099999875, y: -0.0000000022031854}
+  m_Size: {x: 8.558813, y: 19.970005}
   m_Direction: 0
+--- !u!1 &925606715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925606716}
+  - component: {fileID: 925606720}
+  - component: {fileID: 925606719}
+  - component: {fileID: 925606721}
+  - component: {fileID: 925606717}
+  m_Layer: 0
+  m_Name: Player5A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &925606716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925606715}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: 60, y: 60, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1918049619}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
+--- !u!114 &925606717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925606715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
+  team: 0
+  vehicleType: 0
+  hitForce: 10
+  hitCooldown: 0.5
+  maxSpeed: 50
+  acceleration: 75
+  aiSpeed: 50
+  ballDetectionRadius: 5
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  isPlayerControlled: 0
+  isGoalie: 0
+  opponentGoal: {fileID: 969958059}
+  boostMultiplier: 2
+  boostDrainRate: 1
+  boostRechargeRate: 0.5
+  maxBoost: 3
+  passForce: 8
+  passCooldown: 0.5
 --- !u!50 &925606719
 Rigidbody2D:
   serializedVersion: 5
@@ -3307,18 +3366,55 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.981689, y: 19.970001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!70 &925606721
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925606715}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.15517898, y: 0.0000228871}
+  m_Size: {x: 8.680078, y: 19.97001}
+  m_Direction: 0
 --- !u!1 &969958058
 GameObject:
   m_ObjectHideFlags: 0
@@ -3331,7 +3427,7 @@ GameObject:
   - component: {fileID: 969958061}
   - component: {fileID: 969958060}
   m_Layer: 0
-  m_Name: Goal
+  m_Name: GoalB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3425,7 +3521,7 @@ GameObject:
   - component: {fileID: 981505837}
   - component: {fileID: 981505836}
   m_Layer: 0
-  m_Name: GoalPosts
+  m_Name: GoalPostsB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3547,10 +3643,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1008161397}
-  - component: {fileID: 1008161400}
-  - component: {fileID: 1008161399}
-  - component: {fileID: 1008161398}
-  - component: {fileID: 1008161401}
   m_Layer: 0
   m_Name: TeamB
   m_TagString: Untagged
@@ -3566,8 +3658,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008161396}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: 15, y: 0, z: -9}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -15, y: 0, z: -9}
   m_LocalScale: {x: 0.5000001, y: 0.5000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3578,147 +3670,7 @@ Transform:
   - {fileID: 1296925088}
   - {fileID: 896045159}
   m_Father: {fileID: 2133483467}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
---- !u!70 &1008161398
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008161396}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 9.981691, y: 19.970005}
-  m_Direction: 0
---- !u!50 &1008161399
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008161396}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 3
-  m_AngularDamping: 6
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 0
-  m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!212 &1008161400
-SpriteRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008161396}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 9.981689, y: 19.970001}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
---- !u!114 &1008161401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008161396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c67cd10ab13ff6c4e837fd9bc4b44d38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OneVOneAI
-  ownGoal: {fileID: 0}
-  opponentGoal: {fileID: 0}
-  ball: {fileID: 1012854093}
-  speed: 50
-  acceleration: 50
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &1012854092
 GameObject:
   m_ObjectHideFlags: 0
@@ -3902,9 +3854,10 @@ GameObject:
   - component: {fileID: 1054750225}
   - component: {fileID: 1054750224}
   - component: {fileID: 1054750223}
-  - component: {fileID: 1054750222}
+  - component: {fileID: 1054750226}
+  - component: {fileID: 1054750227}
   m_Layer: 0
-  m_Name: Player1
+  m_Name: Player1B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3918,42 +3871,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054750220}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalPosition: {x: -30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1008161397}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1054750222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054750220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
-  team: 0
-  vehicleType: 0
-  hitForce: 10
-  hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
-  horizontalAxis: Horizontal
-  verticalAxis: Vertical
-  isPlayerControlled: 0
-  boostMultiplier: 2
-  boostDrainRate: 1
-  boostRechargeRate: 0.5
-  maxBoost: 3
-  passForce: 8
-  passCooldown: 0.5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!70 &1054750223
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3988,8 +3912,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: -0.07696388, y: -0.05066013}
+  m_Size: {x: 8.27059, y: 19.911812}
   m_Direction: 0
 --- !u!50 &1054750224
 Rigidbody2D:
@@ -4065,18 +3989,68 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.981689, y: 19.970001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1054750226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054750220}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67cd10ab13ff6c4e837fd9bc4b44d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AI
+  isGoalie: 0
+  defendRadius: 5
+  ownGoal: {fileID: 969958059}
+  opponentGoal: {fileID: 504576894}
+  ball: {fileID: 1012854093}
+  speed: 50
+  acceleration: 75
+--- !u!114 &1054750227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054750220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
+  team: 1
+  vehicleType: 0
+  hitForce: 10
+  hitCooldown: 0.5
+  maxSpeed: 50
+  acceleration: 75
+  aiSpeed: 45
+  ballDetectionRadius: 5
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  isPlayerControlled: 0
+  isGoalie: 0
+  opponentGoal: {fileID: 504576894}
+  boostMultiplier: 2
+  boostDrainRate: 1
+  boostRechargeRate: 0.5
+  maxBoost: 3
+  passForce: 8
+  passCooldown: 0.5
 --- !u!1 &1075141989
 GameObject:
   m_ObjectHideFlags: 0
@@ -4101,13 +4075,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075141989}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
 --- !u!1 &1079737272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4171,13 +4145,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123614214}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: 60, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1079737273}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
 --- !u!1 &1123685963
 GameObject:
   m_ObjectHideFlags: 0
@@ -4190,7 +4164,7 @@ GameObject:
   - component: {fileID: 1123685966}
   - component: {fileID: 1123685965}
   m_Layer: 5
-  m_Name: TeamAName
+  m_Name: TeamBName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4339,13 +4313,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159632770}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalPosition: {x: -30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1679129928}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!1 &1204232420
 GameObject:
   m_ObjectHideFlags: 0
@@ -4475,9 +4449,10 @@ GameObject:
   - component: {fileID: 1296925092}
   - component: {fileID: 1296925091}
   - component: {fileID: 1296925090}
-  - component: {fileID: 1296925089}
+  - component: {fileID: 1296925093}
+  - component: {fileID: 1296925094}
   m_Layer: 0
-  m_Name: Player5
+  m_Name: Player5B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4491,42 +4466,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296925087}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: 60, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1008161397}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1296925089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296925087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
-  team: 0
-  vehicleType: 0
-  hitForce: 10
-  hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
-  horizontalAxis: Horizontal
-  verticalAxis: Vertical
-  isPlayerControlled: 0
-  boostMultiplier: 2
-  boostDrainRate: 1
-  boostRechargeRate: 0.5
-  maxBoost: 3
-  passForce: 8
-  passCooldown: 0.5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
 --- !u!70 &1296925090
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4561,8 +4507,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0.019365305, y: 0.014530176}
+  m_Size: {x: 7.8656974, y: 20.166462}
   m_Direction: 0
 --- !u!50 &1296925091
 Rigidbody2D:
@@ -4638,18 +4584,68 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.981689, y: 19.970001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1296925093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296925087}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67cd10ab13ff6c4e837fd9bc4b44d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AI
+  isGoalie: 0
+  defendRadius: 5
+  ownGoal: {fileID: 969958059}
+  opponentGoal: {fileID: 504576894}
+  ball: {fileID: 1012854093}
+  speed: 50
+  acceleration: 75
+--- !u!114 &1296925094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296925087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
+  team: 1
+  vehicleType: 0
+  hitForce: 10
+  hitCooldown: 0.5
+  maxSpeed: 50
+  acceleration: 75
+  aiSpeed: 45
+  ballDetectionRadius: 5
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  isPlayerControlled: 0
+  isGoalie: 0
+  opponentGoal: {fileID: 504576894}
+  boostMultiplier: 2
+  boostDrainRate: 1
+  boostRechargeRate: 0.5
+  maxBoost: 3
+  passForce: 8
+  passCooldown: 0.5
 --- !u!1 &1315995500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4661,7 +4657,7 @@ GameObject:
   - component: {fileID: 1315995501}
   - component: {fileID: 1315995502}
   m_Layer: 0
-  m_Name: GoalBack
+  m_Name: GoalBackB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4752,13 +4748,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318811170}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1679129928}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
 --- !u!1 &1319502933
 GameObject:
   m_ObjectHideFlags: 0
@@ -4905,13 +4901,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434866418}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalPosition: {x: -30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1679129928}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!1 &1456997048
 GameObject:
   m_ObjectHideFlags: 0
@@ -4924,7 +4920,7 @@ GameObject:
   - component: {fileID: 1456997051}
   - component: {fileID: 1456997050}
   m_Layer: 5
-  m_Name: TeamBName
+  m_Name: TeamAName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5060,10 +5056,10 @@ GameObject:
   - component: {fileID: 1477580343}
   - component: {fileID: 1477580347}
   - component: {fileID: 1477580346}
-  - component: {fileID: 1477580345}
+  - component: {fileID: 1477580348}
   - component: {fileID: 1477580344}
   m_Layer: 0
-  m_Name: Player4
+  m_Name: Player4A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5077,13 +5073,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477580342}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: -60, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1918049619}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40}
 --- !u!114 &1477580344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5100,56 +5096,21 @@ MonoBehaviour:
   vehicleType: 0
   hitForce: 10
   hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
+  maxSpeed: 50
+  acceleration: 75
+  aiSpeed: 50
+  ballDetectionRadius: 5
   horizontalAxis: Horizontal
   verticalAxis: Vertical
   isPlayerControlled: 0
+  isGoalie: 0
+  opponentGoal: {fileID: 969958059}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
   passForce: 8
   passCooldown: 0.5
---- !u!70 &1477580345
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477580342}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
 --- !u!50 &1477580346
 Rigidbody2D:
   serializedVersion: 5
@@ -5224,18 +5185,55 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.981689, y: 19.970001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!70 &1477580348
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477580342}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.009097573, y: 0.0000152585835}
+  m_Size: {x: 8.562139, y: 19.970007}
+  m_Direction: 0
 --- !u!1 &1493895940
 GameObject:
   m_ObjectHideFlags: 0
@@ -5261,7 +5259,7 @@ Transform:
   m_GameObject: {fileID: 1493895940}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5314,7 +5312,7 @@ GameObject:
   - component: {fileID: 1573891984}
   - component: {fileID: 1573891983}
   m_Layer: 0
-  m_Name: Player1
+  m_Name: Player1A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5328,13 +5326,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573891981}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalPosition: {x: -30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1918049619}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!114 &1573891983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5351,13 +5349,15 @@ MonoBehaviour:
   vehicleType: 0
   hitForce: 10
   hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
+  maxSpeed: 50
+  acceleration: 75
+  aiSpeed: 50
+  ballDetectionRadius: 5
   horizontalAxis: Horizontal
   verticalAxis: Vertical
   isPlayerControlled: 0
+  isGoalie: 0
+  opponentGoal: {fileID: 969958059}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
@@ -5398,8 +5398,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: -0.043183785, y: -0.045566548}
+  m_Size: {x: 7.769835, y: 20.073341}
   m_Direction: 0
 --- !u!50 &1573891985
 Rigidbody2D:
@@ -5475,17 +5475,17 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.981689, y: 19.970001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!1 &1577918752
 GameObject:
@@ -5511,13 +5511,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577918752}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalPosition: {x: -30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!1 &1679129927
 GameObject:
   m_ObjectHideFlags: 0
@@ -5594,7 +5594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1740908494}
   m_Layer: 0
-  m_Name: TeamBPlayer2
+  m_Name: TeamBPlayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5609,7 +5609,7 @@ Transform:
   m_GameObject: {fileID: 1740908493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5640,7 +5640,7 @@ Transform:
   m_GameObject: {fileID: 1823179157}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 80, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5670,13 +5670,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836704815}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: 60, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
 --- !u!1 &1847872287
 GameObject:
   m_ObjectHideFlags: 0
@@ -5689,9 +5689,10 @@ GameObject:
   - component: {fileID: 1847872292}
   - component: {fileID: 1847872291}
   - component: {fileID: 1847872290}
-  - component: {fileID: 1847872289}
+  - component: {fileID: 1847872293}
+  - component: {fileID: 1847872294}
   m_Layer: 0
-  m_Name: Player3
+  m_Name: Player3B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5706,41 +5707,12 @@ Transform:
   m_GameObject: {fileID: 1847872287}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1008161397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1847872289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847872287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
-  team: 0
-  vehicleType: 0
-  hitForce: 10
-  hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
-  horizontalAxis: Horizontal
-  verticalAxis: Vertical
-  isPlayerControlled: 0
-  boostMultiplier: 2
-  boostDrainRate: 1
-  boostRechargeRate: 0.5
-  maxBoost: 3
-  passForce: 8
-  passCooldown: 0.5
 --- !u!70 &1847872290
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5775,8 +5747,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0.000000953674, y: -0.027864445}
+  m_Size: {x: 7.9701757, y: 20.009918}
   m_Direction: 0
 --- !u!50 &1847872291
 Rigidbody2D:
@@ -5852,18 +5824,68 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.981689, y: 19.970001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1847872293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847872287}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67cd10ab13ff6c4e837fd9bc4b44d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AI
+  isGoalie: 0
+  defendRadius: 5
+  ownGoal: {fileID: 969958059}
+  opponentGoal: {fileID: 504576894}
+  ball: {fileID: 1012854093}
+  speed: 50
+  acceleration: 75
+--- !u!114 &1847872294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847872287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
+  team: 1
+  vehicleType: 0
+  hitForce: 10
+  hitCooldown: 0.5
+  maxSpeed: 50
+  acceleration: 75
+  aiSpeed: 45
+  ballDetectionRadius: 5
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  isPlayerControlled: 0
+  isGoalie: 0
+  opponentGoal: {fileID: 504576894}
+  boostMultiplier: 2
+  boostDrainRate: 1
+  boostRechargeRate: 0.5
+  maxBoost: 3
+  passForce: 8
+  passCooldown: 0.5
 --- !u!1 &1918049618
 GameObject:
   m_ObjectHideFlags: 0
@@ -5873,10 +5895,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1918049619}
-  - component: {fileID: 1918049620}
-  - component: {fileID: 1918049622}
-  - component: {fileID: 1918049621}
-  - component: {fileID: 1918049623}
   m_Layer: 0
   m_Name: TeamA
   m_TagString: Untagged
@@ -5892,8 +5910,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918049618}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -15, y: 0, z: -9}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: 15, y: 0, z: -9}
   m_LocalScale: {x: 0.5000001, y: 0.5000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5904,159 +5922,7 @@ Transform:
   - {fileID: 925606716}
   - {fileID: 2073781221}
   m_Father: {fileID: 2133483467}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!212 &1918049620
-SpriteRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918049618}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 9.981689, y: 19.970001}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
---- !u!70 &1918049621
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918049618}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 9.981691, y: 19.970005}
-  m_Direction: 0
---- !u!50 &1918049622
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918049618}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 3
-  m_AngularDamping: 6
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 0
-  m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!114 &1918049623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918049618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
-  team: 0
-  vehicleType: 0
-  hitForce: 10
-  hitCooldown: 0.5
-  maxSpeed: 50
-  acceleration: 50
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
-  horizontalAxis: Horizontal
-  verticalAxis: Vertical
-  isPlayerControlled: 1
-  boostMultiplier: 2
-  boostDrainRate: 1
-  boostRechargeRate: 0.5
-  maxBoost: 3
-  passForce: 8
-  passCooldown: 0.5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!1 &1929078641
 GameObject:
   m_ObjectHideFlags: 0
@@ -6082,7 +5948,7 @@ Transform:
   m_GameObject: {fileID: 1929078641}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6112,13 +5978,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024410411}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: -60, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1079737273}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40}
 --- !u!1 &2073781220
 GameObject:
   m_ObjectHideFlags: 0
@@ -6130,10 +5996,10 @@ GameObject:
   - component: {fileID: 2073781221}
   - component: {fileID: 2073781225}
   - component: {fileID: 2073781224}
-  - component: {fileID: 2073781223}
+  - component: {fileID: 2073781226}
   - component: {fileID: 2073781222}
   m_Layer: 0
-  m_Name: Goalie
+  m_Name: GoalieA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6148,7 +6014,7 @@ Transform:
   m_GameObject: {fileID: 2073781220}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 80, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6167,59 +6033,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VehicleController
   team: 0
-  vehicleType: 0
+  vehicleType: 3
   hitForce: 10
   hitCooldown: 0.5
-  maxSpeed: 6
+  maxSpeed: 10
   acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
+  aiSpeed: 10
+  ballDetectionRadius: 15
   horizontalAxis: Horizontal
   verticalAxis: Vertical
   isPlayerControlled: 0
+  isGoalie: 1
+  opponentGoal: {fileID: 969958059}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
   passForce: 8
   passCooldown: 0.5
---- !u!70 &2073781223
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073781220}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
 --- !u!50 &2073781224
 Rigidbody2D:
   serializedVersion: 5
@@ -6294,18 +6125,64 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -972747586082640523, guid: 1057942d558761146b753e4777d0943e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 8.54, y: 15.07}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!61 &2073781226
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073781220}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8.54, y: 15.07}
+    newSize: {x: 8.54, y: 15.07}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 8.54, y: 15.07}
+  m_EdgeRadius: 0
 --- !u!1 &2133483466
 GameObject:
   m_ObjectHideFlags: 0
@@ -6336,8 +6213,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1012854093}
-  - {fileID: 1918049619}
   - {fileID: 1008161397}
+  - {fileID: 1918049619}
   - {fileID: 469871737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6353,9 +6230,10 @@ GameObject:
   - component: {fileID: 2144815862}
   - component: {fileID: 2144815861}
   - component: {fileID: 2144815860}
-  - component: {fileID: 2144815859}
+  - component: {fileID: 2144815863}
+  - component: {fileID: 2144815864}
   m_Layer: 0
-  m_Name: Player4
+  m_Name: Player4B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6369,42 +6247,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144815857}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.3420201, w: 0.9396927}
+  m_LocalPosition: {x: -60, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1008161397}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2144815859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144815857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
-  team: 0
-  vehicleType: 0
-  hitForce: 10
-  hitCooldown: 0.5
-  maxSpeed: 6
-  acceleration: 30
-  aiSpeed: 4.5
-  ballDetectionRadius: 3
-  horizontalAxis: Horizontal
-  verticalAxis: Vertical
-  isPlayerControlled: 0
-  boostMultiplier: 2
-  boostDrainRate: 1
-  boostRechargeRate: 0.5
-  maxBoost: 3
-  passForce: 8
-  passCooldown: 0.5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40}
 --- !u!70 &2144815860
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6439,8 +6288,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0.016020771, y: 0.02906703}
+  m_Size: {x: 7.9818187, y: 19.911987}
   m_Direction: 0
 --- !u!50 &2144815861
 Rigidbody2D:
@@ -6516,18 +6365,68 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.981689, y: 19.970001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &2144815863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144815857}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67cd10ab13ff6c4e837fd9bc4b44d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AI
+  isGoalie: 0
+  defendRadius: 5
+  ownGoal: {fileID: 969958059}
+  opponentGoal: {fileID: 504576894}
+  ball: {fileID: 1012854093}
+  speed: 50
+  acceleration: 75
+--- !u!114 &2144815864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144815857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbdbced957622c4e9ba9579d92d2602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleController
+  team: 1
+  vehicleType: 0
+  hitForce: 10
+  hitCooldown: 0.5
+  maxSpeed: 50
+  acceleration: 75
+  aiSpeed: 45
+  ballDetectionRadius: 5
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  isPlayerControlled: 0
+  isGoalie: 0
+  opponentGoal: {fileID: 504576894}
+  boostMultiplier: 2
+  boostDrainRate: 1
+  boostRechargeRate: 0.5
+  maxBoost: 3
+  passForce: 8
+  passCooldown: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

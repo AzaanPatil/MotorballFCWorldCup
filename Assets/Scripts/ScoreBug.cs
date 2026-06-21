@@ -22,9 +22,20 @@ public class Scorebug : MonoBehaviour
     void Start()
     {
         if (gameManager == null)
-            gameManager = FindAnyObjectByType<GameManager>();
+        {
+            // Only accept a GameManager that lives in the same scene as this ScoreBug.
+            // FindAnyObjectByType searches all loaded scenes, so without this check the
+            // Main Menu ScoreBug would find the GameScene's GameManager when both are open.
+            foreach (var gm in FindObjectsByType<GameManager>(FindObjectsInactive.Exclude))
+            {
+                if (gm.gameObject.scene == gameObject.scene)
+                {
+                    gameManager = gm;
+                    break;
+                }
+            }
+        }
 
-        // Hide entirely in scenes that have no GameManager (e.g. main menu)
         if (gameManager == null)
             gameObject.SetActive(false);
     }

@@ -22,6 +22,8 @@ public class VehicleController : MonoBehaviour
         Tank
     }
 
+    public enum PlayerPosition { Striker, Midfielder, Defender, Goalie }
+
     [Header("Vehicle Type")]
     public VehicleType vehicleType;
     
@@ -31,9 +33,9 @@ public class VehicleController : MonoBehaviour
     private float lastHitTime = -10f;
     
     [Header("Movement")]
-    public float maxSpeed = 6f;
-    public float acceleration = 30f;
-    public float aiSpeed = 4.5f; // AI is slightly slower than player
+    public float maxSpeed = 15f;
+    public float acceleration = 50f;
+    public float aiSpeed = 12f;
     public float ballDetectionRadius = 3f;
 
     [Header("Input")]
@@ -42,7 +44,10 @@ public class VehicleController : MonoBehaviour
 
     [Header("Control")]
     public bool isPlayerControlled = false;
-    public bool isGoalie = false; // Prevents player from switching to this vehicle; VehicleController skips AI movement so Tank.cs can drive the goalie
+    public bool isGoalie = false;
+
+    [Header("Position")]
+    public PlayerPosition position = PlayerPosition.Striker;
 
     [Header("AI Goals")]
     public Transform opponentGoal; // Assign the opponent's goal Transform so AI kicks toward it
@@ -76,37 +81,27 @@ public class VehicleController : MonoBehaviour
         if (gameManager != null)
             ball = gameManager.ball;
 
-        void ApplyVehicleStats()
-        {
-            switch (vehicleType)
-            {
-                case VehicleType.Car:
-                    maxSpeed = 6f;
-                    acceleration = 30f;
-                    hitForce = 10f;
-                    break;
-
-                case VehicleType.MonsterTruck:
-                    maxSpeed = 4f;
-                    acceleration = 20f;
-                    hitForce = 15f;
-                    break;
-
-                case VehicleType.Quad:
-                    maxSpeed = 5f;
-                    acceleration = 40f;
-                    hitForce = 7f;
-                    break;
-
-                case VehicleType.Tank:
-                    maxSpeed = 3f;
-                    acceleration = 15f;
-                    hitForce = 20f;
-                    break;
-            }
-        }
-
         ApplyVehicleStats();
+    }
+
+    // Called by Start() for Inspector-set types, and by GameManager when overriding type from MatchSettings
+    public void ApplyVehicleStats()
+    {
+        switch (vehicleType)
+        {
+            case VehicleType.Car:
+                maxSpeed = 15f; acceleration = 50f; aiSpeed = 12f; hitForce = 10f;
+                break;
+            case VehicleType.Quad:
+                maxSpeed = 22f; acceleration = 80f; aiSpeed = 16f; hitForce = 5f;
+                break;
+            case VehicleType.MonsterTruck:
+                maxSpeed = 10f; acceleration = 30f; aiSpeed = 8f;  hitForce = 20f;
+                break;
+            case VehicleType.Tank:
+                maxSpeed = 7f;  acceleration = 25f; aiSpeed = 6f;  hitForce = 25f;
+                break;
+        }
     }
 
     void Update()
@@ -118,10 +113,10 @@ public class VehicleController : MonoBehaviour
             
             playerInput = Vector2.zero;
 
-            if (Input.GetKey(KeyCode.UpArrow)) playerInput.y += 1;
-            if (Input.GetKey(KeyCode.DownArrow)) playerInput.y -= 1;
-            if (Input.GetKey(KeyCode.RightArrow)) playerInput.x += 1;
-            if (Input.GetKey(KeyCode.LeftArrow)) playerInput.x -= 1;
+            if (Input.GetKey(KeyCode.UpArrow)    || Input.GetKey(KeyCode.W)) playerInput.y += 1;
+            if (Input.GetKey(KeyCode.DownArrow)  || Input.GetKey(KeyCode.S)) playerInput.y -= 1;
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) playerInput.x += 1;
+            if (Input.GetKey(KeyCode.LeftArrow)  || Input.GetKey(KeyCode.A)) playerInput.x -= 1;
 
             // Auto-switch: if the player is far from this vehicle, allow switching
             //if (IsNearBall() && gameManager != null)

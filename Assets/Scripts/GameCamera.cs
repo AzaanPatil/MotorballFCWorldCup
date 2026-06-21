@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameCamera : MonoBehaviour
 {
     public Transform target; // Assign the target Transform here
-    public float smoothSpeed = 5f;
+    public float smoothSpeed = 12f;
 
     private GameManager gameManager;
 
