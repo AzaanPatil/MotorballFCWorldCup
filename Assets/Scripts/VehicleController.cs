@@ -62,9 +62,12 @@ public class VehicleController : MonoBehaviour
     public float boostDrainRate = 1f;
     public float boostRechargeRate = 0.5f;
     public float maxBoost = 3f;
+    public ParticleSystem boostParticles;
 
     private float currentBoost;
     private bool isBoosting = false;
+
+    public float BoostRatio => maxBoost > 0 ? currentBoost / maxBoost : 0f;
 
     [Header("Passing")]
     public float passForce = 8f;
@@ -157,6 +160,12 @@ public class VehicleController : MonoBehaviour
                 currentBoost += boostRechargeRate * Time.fixedDeltaTime;
             currentBoost = Mathf.Clamp(currentBoost, 0f, maxBoost);
 
+            if (boostParticles != null)
+            {
+                if (isBoosting && !boostParticles.isPlaying) boostParticles.Play();
+                if (!isBoosting && boostParticles.isPlaying) boostParticles.Stop();
+            }
+
             // Direct velocity assignment: car instantly goes the direction you press
             float speed = isBoosting ? maxSpeed * boostMultiplier : maxSpeed;
             rb.linearVelocity = playerInput.normalized * speed;
@@ -172,7 +181,6 @@ public class VehicleController : MonoBehaviour
 
     private void MoveAI()
     {
-        // Goalies have their own movement script (Tank.cs) — don't override it
         if (isGoalie) return;
 
         if (gameManager != null && gameManager.currentState != GameManager.GameState.Playing)
@@ -187,26 +195,35 @@ public class VehicleController : MonoBehaviour
             return;
         }
 
-        float distToBall = Vector2.Distance(transform.position, ball.position);
+        Vector2 selfPos    = transform.position;
+        Vector2 ballPos    = ball.position;
+        float   distToBall = Vector2.Distance(selfPos, ballPos);
         Vector2 moveTarget;
 
-        if (distToBall > 1.5f)
+        if (opponentGoal != null)
         {
-            // Chase the ball
-            moveTarget = ball.position;
-        }
-        else if (opponentGoal != null)
-        {
-            // Close to ball: drive through it toward the goal so it gets pushed there
-            moveTarget = opponentGoal.position;
+            Vector2 goalPos    = opponentGoal.position;
+            Vector2 goalToBall = (ballPos - goalPos).normalized;
+            Vector2 behindBall = ballPos + goalToBall * 2f;
+
+            if (distToBall > 0.8f)
+            {
+                // Only chase the ball directly if already lined up behind it toward the goal
+                Vector2 selfToBall = (ballPos - selfPos).normalized;
+                float   alignment  = Vector2.Dot(selfToBall, -goalToBall);
+                moveTarget = alignment > 0.5f ? ballPos : behindBall;
+            }
+            else
+            {
+                moveTarget = goalPos;
+            }
         }
         else
         {
-            // No goal assigned: keep pushing the ball in the same direction we arrived from
-            moveTarget = (Vector2)ball.position + (Vector2)(ball.position - transform.position).normalized * 3f;
+            moveTarget = ballPos;
         }
 
-        Vector2 direction = (moveTarget - (Vector2)transform.position).normalized;
+        Vector2 direction = (moveTarget - selfPos).normalized;
         rb.linearVelocity = direction * aiSpeed;
         RotateToward(direction);
     }

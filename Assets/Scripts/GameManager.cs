@@ -105,16 +105,18 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // If MenuManager exists anywhere in the loaded scenes, the Main Menu is present.
-        // Don't initialize — clicking Start Game will reload GameScene with the correct settings.
+        Debug.Log("[GameManager] Start() called.");
+
         if (FindAnyObjectByType<MenuManager>() != null)
         {
+            Debug.Log("[GameManager] MenuManager found — skipping init (Main Menu is loaded).");
             foreach (var bug in FindObjectsByType<Scorebug>(FindObjectsInactive.Include))
                 if (bug.gameObject.scene == gameObject.scene)
                     bug.gameObject.SetActive(false);
             return;
         }
 
+        Debug.Log("[GameManager] No MenuManager — running InitializeGame().");
         InitializeGame();
     }
 
@@ -156,6 +158,7 @@ public class GameManager : MonoBehaviour
             teamA.teamName  = homeData.abbreviation;
             teamA.teamFlag  = homeData.flag;
             teamA.homeColor = homeData.homeColor;
+            Debug.Log($"[GameManager] Home: country={homeData.country} abbr={homeData.abbreviation} flag={( homeData.flag != null ? homeData.flag.name : "NULL")}");
         }
 
         if (awayData != null)
@@ -163,6 +166,7 @@ public class GameManager : MonoBehaviour
             teamB.teamName  = awayData.abbreviation;
             teamB.teamFlag  = awayData.flag;
             teamB.homeColor = awayData.homeColor;
+            Debug.Log($"[GameManager] Away: country={awayData.country} abbr={awayData.abbreviation} flag={(awayData.flag != null ? awayData.flag.name : "NULL")}");
         }
     }
 
@@ -367,6 +371,8 @@ public class GameManager : MonoBehaviour
 
     void AssignGoals()
     {
+        Debug.Log($"[GameManager] AssignGoals: teamAShootsAt={(teamAShootsAt != null ? teamAShootsAt.name : "NULL")} teamBShootsAt={(teamBShootsAt != null ? teamBShootsAt.name : "NULL")}");
+
         // VehicleController vehicles (player team)
         foreach (var v in allVehicles)
             v.opponentGoal = (v.team == VehicleController.Team.Friendly) ? teamAShootsAt : teamBShootsAt;
@@ -433,6 +439,9 @@ public class GameManager : MonoBehaviour
         if (teamAScore > teamBScore)      SetMessage(teamA.teamName + " WINS!!!");
         else if (teamBScore > teamAScore) SetMessage(teamB.teamName + " WINS!!!");
         else                              SetMessage("DRAW!");
+
+        EndScreen endScreen = FindAnyObjectByType<EndScreen>();
+        if (endScreen != null) endScreen.Show(this);
     }
 
     public void GoalScored(bool teamAScored)
@@ -440,12 +449,17 @@ public class GameManager : MonoBehaviour
         if (currentState == GameState.GameOver) return;
 
         if (teamAScored) teamAScore++; else teamBScore++;
+        if (MatchStats.Instance != null) MatchStats.Instance.RecordGoal(teamAScored);
 
         UpdateUI();
         currentState = GameState.Goal;
         goalTimer = 0f;
         SetMessage($"Goal! {(teamAScored ? teamA.teamName : teamB.teamName)} scored!");
-        if (audioManager != null) audioManager.PlayGoal();
+
+        if (GoalSequence.Instance != null)
+            GoalSequence.Instance.Play(teamAScored, teamAScored ? teamA.teamName : teamB.teamName);
+        else if (audioManager != null)
+            audioManager.PlayGoal();
 
         if (useScoreLimit && (teamAScore >= winningScore || teamBScore >= winningScore))
             EndGame();

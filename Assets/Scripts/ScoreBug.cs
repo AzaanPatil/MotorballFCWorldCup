@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Scorebug : MonoBehaviour
@@ -8,8 +9,8 @@ public class Scorebug : MonoBehaviour
     [Header("TeamName UI")]
     public TextMeshProUGUI teamANameText;
     public TextMeshProUGUI teamBNameText;
-    public Sprite teamAFlag;
-    public Sprite teamBFlag;
+    public Image teamAFlagImage;
+    public Image teamBFlagImage;
 
     [Header("Score UI")]
     public TextMeshProUGUI teamAScoreText;
@@ -55,16 +56,14 @@ public class Scorebug : MonoBehaviour
     {
         if (gameManager == null) return;
 
-        //Displays team names
         teamANameText.text = GetAbbreviation(gameManager.teamA.teamName);
         teamBNameText.text = GetAbbreviation(gameManager.teamB.teamName);
 
-        //Show team flags under team names
-        if (gameManager.teamA.teamFlag != null)
-            teamANameText.text = $"<sprite name=\"{gameManager.teamA.teamFlag.name}\" tint=1>{teamANameText.text}";
-        
-        if (gameManager.teamB.teamFlag != null)
-            teamBNameText.text = $"<sprite name=\"{gameManager.teamB.teamFlag.name}\" tint=1>{teamBNameText.text}";
+        if (teamAFlagImage != null && gameManager.teamA.teamFlag != null)
+            teamAFlagImage.sprite = gameManager.teamA.teamFlag;
+
+        if (teamBFlagImage != null && gameManager.teamB.teamFlag != null)
+            teamBFlagImage.sprite = gameManager.teamB.teamFlag;
 
         if (gameManager.currentState == GameManager.GameState.GameOver)
         {

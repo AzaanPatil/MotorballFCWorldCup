@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,8 +10,26 @@ public class MenuManager : MonoBehaviour
     [Tooltip("The whole defender vehicle-picker panel (label + dropdown). Hidden unless 5v5.")]
     public GameObject defenderVehiclePanel;
 
+    [Header("Dropdowns (for default sync)")]
+    public Dropdown gameModeDropdown;
+    public Dropdown homeCountryDropdown;
+    public Dropdown awayCountryDropdown;
+    public Dropdown teamDropdown;
+    public Dropdown strikerVehicleDropdown;
+    public Dropdown midfielderVehicleDropdown;
+    public Dropdown defenderVehicleDropdown;
+
     void Start()
     {
+        // Sync MatchSettings with whatever the dropdowns show by default
+        if (gameModeDropdown      != null) SelectGameMode(gameModeDropdown.value);
+        if (homeCountryDropdown   != null) SelectHomeCountry(homeCountryDropdown.value);
+        if (awayCountryDropdown   != null) SelectAwayCountry(awayCountryDropdown.value);
+        if (teamDropdown          != null) SelectTeam(teamDropdown.value);
+        if (strikerVehicleDropdown    != null) SelectStrikerVehicle(strikerVehicleDropdown.value);
+        if (midfielderVehicleDropdown != null) SelectMidfielderVehicle(midfielderVehicleDropdown.value);
+        if (defenderVehicleDropdown   != null) SelectDefenderVehicle(defenderVehicleDropdown.value);
+
         RefreshVehiclePanels();
     }
 
