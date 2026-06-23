@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text messageText;
     public GameAudio audioManager;
+    public EndScreen endScreen;
 
     [Header("Player Control")]
     public VehicleController.Team playerTeam = VehicleController.Team.Friendly;
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] teamBPlayers;
     public GameObject   teamBGoalie;
 
-    private VehicleController[] allVehicles;
+    [HideInInspector] public VehicleController[] allVehicles;
     private float goalTimer;
     private float lastSwitchTime;
 
@@ -138,6 +139,8 @@ public class GameManager : MonoBehaviour
         gameTime   = 0f;
         goalTimer  = 0f;
         UpdateUI();
+
+        if (audioManager != null) audioManager.StartCrowdAmbience();
 
         StartCoroutine(LateInitialize());
     }
@@ -373,9 +376,12 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"[GameManager] AssignGoals: teamAShootsAt={(teamAShootsAt != null ? teamAShootsAt.name : "NULL")} teamBShootsAt={(teamBShootsAt != null ? teamBShootsAt.name : "NULL")}");
 
-        // VehicleController vehicles (player team)
+        // VehicleController vehicles
         foreach (var v in allVehicles)
+        {
             v.opponentGoal = (v.team == VehicleController.Team.Friendly) ? teamAShootsAt : teamBShootsAt;
+            v.ownGoal      = (v.team == VehicleController.Team.Friendly) ? teamBShootsAt : teamAShootsAt;
+        }
 
         // AI.cs vehicles (enemy team — no VehicleController on them)
         foreach (var ai in FindObjectsByType<AI>(FindObjectsInactive.Exclude))
@@ -440,7 +446,7 @@ public class GameManager : MonoBehaviour
         else if (teamBScore > teamAScore) SetMessage(teamB.teamName + " WINS!!!");
         else                              SetMessage("DRAW!");
 
-        EndScreen endScreen = FindAnyObjectByType<EndScreen>();
+        if (endScreen == null) endScreen = FindAnyObjectByType<EndScreen>();
         if (endScreen != null) endScreen.Show(this);
     }
 
@@ -541,6 +547,34 @@ public class GameManager : MonoBehaviour
         playerTeam = selectedTeam;
         if (allVehicles == null || allVehicles.Length == 0)
             allVehicles = FindObjectsByType<VehicleController>(FindObjectsInactive.Exclude);
+    }
+
+    private Coroutine passTrackCoroutine;
+
+    public void BeginPassTracking(VehicleController receiver)
+    {
+        if (passTrackCoroutine != null) StopCoroutine(passTrackCoroutine);
+        passTrackCoroutine = StartCoroutine(TrackPass(receiver));
+    }
+
+    IEnumerator TrackPass(VehicleController receiver)
+    {
+        float elapsed = 0f;
+        float timeout = 4f;
+
+        while (elapsed < timeout)
+        {
+            if (ball != null && receiver != null)
+            {
+                if (Vector2.Distance(ball.position, receiver.transform.position) < 1.5f)
+                {
+                    SetActivePlayer(receiver);
+                    yield break;
+                }
+            }
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 
     void SwitchPlayer()

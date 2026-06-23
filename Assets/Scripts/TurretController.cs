@@ -3,9 +3,10 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     [Header("References")]
-    public Transform turretPivot;
-    public Transform firePoint;
+    public Transform  turretPivot;
+    public Transform  firePoint;
     public GameObject shellPrefab;
+    public Transform  target;
 
     [Header("Firing")]
     public float shellSpeed    = 20f;
@@ -23,7 +24,6 @@ public class TurretController : MonoBehaviour
     private int   currentAmmo;
     private float lastFireTime = -10f;
     private bool  isPlayerControlled;
-    private Transform target;
 
     void Start()
     {

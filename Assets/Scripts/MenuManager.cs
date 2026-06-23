@@ -10,6 +10,9 @@ public class MenuManager : MonoBehaviour
     [Tooltip("The whole defender vehicle-picker panel (label + dropdown). Hidden unless 5v5.")]
     public GameObject defenderVehiclePanel;
 
+    [Header("Audio")]
+    public GameAudio gameAudio;
+
     [Header("Dropdowns (for default sync)")]
     public Dropdown gameModeDropdown;
     public Dropdown homeCountryDropdown;
@@ -31,6 +34,7 @@ public class MenuManager : MonoBehaviour
         if (defenderVehicleDropdown   != null) SelectDefenderVehicle(defenderVehicleDropdown.value);
 
         RefreshVehiclePanels();
+        if (gameAudio != null) gameAudio.PlayMenuMusic();
     }
 
     public void SelectGameMode(int modeIndex)
@@ -90,8 +94,14 @@ public class MenuManager : MonoBehaviour
         Debug.Log("Defender vehicle: " + MatchSettings.defenderType);
     }
 
+    public void PlayButtonSound()
+    {
+        if (gameAudio != null) gameAudio.PlayButtonClick();
+    }
+
     public void StartGame()
     {
+        if (gameAudio != null) gameAudio.PlayButtonClick();
         SceneManager.LoadScene("GameScene");
     }
 

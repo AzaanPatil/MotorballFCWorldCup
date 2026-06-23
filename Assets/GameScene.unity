@@ -143,13 +143,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13225931}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30, y: -20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &13879973
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,13 +174,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13879973}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
-  m_LocalPosition: {x: 60, y: 60, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -60, y: 40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &27298837
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,13 +205,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27298837}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
-  m_LocalPosition: {x: 60, y: 60, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 45, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1079737273}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &52870039
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,11 +283,19 @@ RectTransform:
   - {fileID: 446397107}
   - {fileID: 628500481}
   - {fileID: 862487348}
+  - {fileID: 851314834}
+  - {fileID: 1527881040}
+  - {fileID: 780197611}
+  - {fileID: 1693081789}
+  - {fileID: 1719789813}
+  - {fileID: 1102486104}
+  - {fileID: 2029406922}
+  - {fileID: 885442038}
   m_Father: {fileID: 543388597}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 530, y: -375}
+  m_AnchoredPosition: {x: 515, y: -325}
   m_SizeDelta: {x: 200, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66435662
@@ -341,10 +349,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scorebug
   gameManager: {fileID: 850357074}
-  teamANameText: {fileID: 1123685965}
-  teamBNameText: {fileID: 1456997050}
-  teamAFlag: {fileID: 0}
-  teamBFlag: {fileID: 0}
+  teamANameText: {fileID: 1456997050}
+  teamBNameText: {fileID: 1123685965}
+  teamAFlagImage: {fileID: 851314835}
+  teamBFlagImage: {fileID: 1527881041}
   teamAScoreText: {fileID: 568224941}
   teamBScoreText: {fileID: 446397108}
   timerText: {fileID: 862487349}
@@ -373,7 +381,7 @@ Transform:
   m_GameObject: {fileID: 70077016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 80, z: 0}
+  m_LocalPosition: {x: 80, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -404,7 +412,7 @@ Transform:
   m_GameObject: {fileID: 105921223}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 30, z: 0}
+  m_LocalPosition: {x: -30, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -512,13 +520,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132997776}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.3420201, w: 0.9396927}
-  m_LocalPosition: {x: -60, y: 60, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 60, y: 40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &191749886
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +586,7 @@ Transform:
   m_GameObject: {fileID: 209833930}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 80, z: 0}
+  m_LocalPosition: {x: -80, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -693,6 +701,7 @@ GameObject:
   - component: {fileID: 389231986}
   - component: {fileID: 389231988}
   - component: {fileID: 389231984}
+  - component: {fileID: 389231989}
   m_Layer: 0
   m_Name: Player3A
   m_TagString: Untagged
@@ -739,11 +748,13 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 0
+  position: 0
   opponentGoal: {fileID: 969958059}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
 --- !u!50 &389231986
@@ -869,6 +880,26 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0000033378587, y: 0.0000076293913}
   m_Size: {x: 8.104334, y: 19.97}
   m_Direction: 0
+--- !u!114 &389231989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389231982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 0
+    sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
+  - vehicleType: 1
+    sprite: {fileID: -7346612907530598944, guid: 30bd1c88051f24f4c8eadaef3dd384f7, type: 3}
+  - vehicleType: 2
+    sprite: {fileID: 5797287731232756760, guid: d983ca0238f43344cb346cdda233a4cb, type: 3}
 --- !u!1 &401998423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,6 +1824,7 @@ GameObject:
   - component: {fileID: 532552992}
   - component: {fileID: 532552995}
   - component: {fileID: 532552996}
+  - component: {fileID: 532552997}
   m_Layer: 0
   m_Name: Player2B
   m_TagString: Untagged
@@ -1981,13 +2013,35 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 0
+  position: 0
   opponentGoal: {fileID: 504576894}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
+--- !u!114 &532552997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532552989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 0
+    sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
+  - vehicleType: 1
+    sprite: {fileID: -7346612907530598944, guid: 30bd1c88051f24f4c8eadaef3dd384f7, type: 3}
+  - vehicleType: 2
+    sprite: {fileID: 5797287731232756760, guid: d983ca0238f43344cb346cdda233a4cb, type: 3}
 --- !u!1 &543388593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,7 +2170,7 @@ Transform:
   m_GameObject: {fileID: 567745034}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 80, z: 0}
+  m_LocalPosition: {x: -80, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2283,13 +2337,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573774689}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
-  m_LocalPosition: {x: -30, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &628500480
 GameObject:
   m_ObjectHideFlags: 0
@@ -2389,13 +2443,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701172319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.3420201, w: 0.9396927}
-  m_LocalPosition: {x: -60, y: 60, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30, y: -20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1079737273}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &776637347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2421,12 +2475,87 @@ Transform:
   m_GameObject: {fileID: 776637347}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 30, z: 0}
+  m_LocalPosition: {x: 30, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1079737273}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &780197610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 780197611}
+  - component: {fileID: 780197613}
+  - component: {fileID: 780197612}
+  m_Layer: 5
+  m_Name: France
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &780197611
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780197610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 66435661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 50, y: 10}
+  m_SizeDelta: {x: 48, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &780197612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780197610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &780197613
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780197610}
+  m_CullTransparentMesh: 1
 --- !u!1 &819873644
 GameObject:
   m_ObjectHideFlags: 0
@@ -2452,7 +2581,7 @@ Transform:
   m_GameObject: {fileID: 819873644}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 30, z: 0}
+  m_LocalPosition: {x: 45, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2526,15 +2655,15 @@ MonoBehaviour:
   teamA:
     teamName: 
     teamFlag: {fileID: 0}
-    homeColor: {r: 0, g: 0.2975241, b: 1, a: 1}
+    homeColor: {r: 1, g: 1, b: 1, a: 1}
     awayColor: {r: 1, g: 1, b: 1, a: 1}
   teamB:
     teamName: 
     teamFlag: {fileID: 0}
-    homeColor: {r: 1, g: 0, b: 0, a: 0}
+    homeColor: {r: 1, g: 1, b: 1, a: 1}
     awayColor: {r: 1, g: 1, b: 1, a: 1}
-  teamAContainer: {fileID: 0}
-  teamBContainer: {fileID: 0}
+  teamAContainer: {fileID: 1918049619}
+  teamBContainer: {fileID: 1008161397}
   spawnPointsRoot: {fileID: 850515336}
   teamAShootsAt: {fileID: 969958059}
   teamBShootsAt: {fileID: 504576894}
@@ -2619,6 +2748,81 @@ Transform:
   - {fileID: 1319502934}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &851314833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 851314834}
+  - component: {fileID: 851314836}
+  - component: {fileID: 851314835}
+  m_Layer: 5
+  m_Name: USA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &851314834
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851314833}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 66435661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 50, y: 10}
+  m_SizeDelta: {x: 48, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &851314835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851314833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &851314836
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851314833}
+  m_CullTransparentMesh: 1
 --- !u!1 &859805125
 GameObject:
   m_ObjectHideFlags: 0
@@ -2788,6 +2992,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862487347}
   m_CullTransparentMesh: 1
+--- !u!1 &885442037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 885442038}
+  - component: {fileID: 885442040}
+  - component: {fileID: 885442039}
+  m_Layer: 5
+  m_Name: England
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &885442038
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885442037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 66435661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -50, y: 10}
+  m_SizeDelta: {x: 48, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &885442039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885442037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &885442040
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885442037}
+  m_CullTransparentMesh: 1
 --- !u!1 &888595596
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,7 +3077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 888595597}
   m_Layer: 0
-  m_Name: TeamBPlayer1
+  m_Name: TeamAPlayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2813,7 +3092,7 @@ Transform:
   m_GameObject: {fileID: 888595596}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalPosition: {x: 30, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2833,6 +3112,7 @@ GameObject:
   - component: {fileID: 896045165}
   - component: {fileID: 896045164}
   - component: {fileID: 896045166}
+  - component: {fileID: 896045167}
   m_Layer: 0
   m_Name: GoalieB
   m_TagString: Untagged
@@ -3030,13 +3310,31 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 1
+  position: 0
   opponentGoal: {fileID: 504576894}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
+--- !u!114 &896045167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896045158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 3
+    sprite: {fileID: -972747586082640523, guid: 1057942d558761146b753e4777d0943e, type: 3}
 --- !u!1 &924311599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,6 +3348,7 @@ GameObject:
   - component: {fileID: 924311603}
   - component: {fileID: 924311601}
   - component: {fileID: 924311605}
+  - component: {fileID: 924311606}
   m_Layer: 0
   m_Name: Player2A
   m_TagString: Untagged
@@ -3096,11 +3395,13 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 0
+  position: 0
   opponentGoal: {fileID: 969958059}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
 --- !u!50 &924311603
@@ -3226,6 +3527,26 @@ CapsuleCollider2D:
   m_Offset: {x: 0.099999875, y: -0.0000000022031854}
   m_Size: {x: 8.558813, y: 19.970005}
   m_Direction: 0
+--- !u!114 &924311606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924311599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 0
+    sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
+  - vehicleType: 1
+    sprite: {fileID: -7346612907530598944, guid: 30bd1c88051f24f4c8eadaef3dd384f7, type: 3}
+  - vehicleType: 2
+    sprite: {fileID: 5797287731232756760, guid: d983ca0238f43344cb346cdda233a4cb, type: 3}
 --- !u!1 &925606715
 GameObject:
   m_ObjectHideFlags: 0
@@ -3239,6 +3560,7 @@ GameObject:
   - component: {fileID: 925606719}
   - component: {fileID: 925606721}
   - component: {fileID: 925606717}
+  - component: {fileID: 925606722}
   m_Layer: 0
   m_Name: Player5A
   m_TagString: Untagged
@@ -3285,11 +3607,13 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 0
+  position: 0
   opponentGoal: {fileID: 969958059}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
 --- !u!50 &925606719
@@ -3415,6 +3739,26 @@ CapsuleCollider2D:
   m_Offset: {x: 0.15517898, y: 0.0000228871}
   m_Size: {x: 8.680078, y: 19.97001}
   m_Direction: 0
+--- !u!114 &925606722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925606715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 0
+    sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
+  - vehicleType: 1
+    sprite: {fileID: -7346612907530598944, guid: 30bd1c88051f24f4c8eadaef3dd384f7, type: 3}
+  - vehicleType: 2
+    sprite: {fileID: 5797287731232756760, guid: d983ca0238f43344cb346cdda233a4cb, type: 3}
 --- !u!1 &969958058
 GameObject:
   m_ObjectHideFlags: 0
@@ -3856,6 +4200,7 @@ GameObject:
   - component: {fileID: 1054750223}
   - component: {fileID: 1054750226}
   - component: {fileID: 1054750227}
+  - component: {fileID: 1054750228}
   m_Layer: 0
   m_Name: Player1B
   m_TagString: Untagged
@@ -4044,13 +4389,35 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 0
+  position: 0
   opponentGoal: {fileID: 504576894}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
+--- !u!114 &1054750228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054750220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 0
+    sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
+  - vehicleType: 1
+    sprite: {fileID: -7346612907530598944, guid: 30bd1c88051f24f4c8eadaef3dd384f7, type: 3}
+  - vehicleType: 2
+    sprite: {fileID: 5797287731232756760, guid: d983ca0238f43344cb346cdda233a4cb, type: 3}
 --- !u!1 &1075141989
 GameObject:
   m_ObjectHideFlags: 0
@@ -4075,13 +4442,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075141989}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30, y: -20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1079737272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,6 +4488,81 @@ Transform:
   - {fileID: 209833931}
   m_Father: {fileID: 850515336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1102486103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102486104}
+  - component: {fileID: 1102486106}
+  - component: {fileID: 1102486105}
+  m_Layer: 5
+  m_Name: Brazil
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1102486104
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102486103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 66435661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -50, y: 10}
+  m_SizeDelta: {x: 48, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1102486105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102486103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1102486106
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102486103}
+  m_CullTransparentMesh: 1
 --- !u!1 &1123614214
 GameObject:
   m_ObjectHideFlags: 0
@@ -4145,13 +4587,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123614214}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
-  m_LocalPosition: {x: 60, y: 60, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -45, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1079737273}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1123685963
 GameObject:
   m_ObjectHideFlags: 0
@@ -4299,7 +4741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1159632771}
   m_Layer: 0
-  m_Name: TeamBPlayer2
+  m_Name: TeamAPlayer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4314,7 +4756,7 @@ Transform:
   m_GameObject: {fileID: 1159632770}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
-  m_LocalPosition: {x: -30, y: 0, z: 0}
+  m_LocalPosition: {x: 30, y: -20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4451,6 +4893,7 @@ GameObject:
   - component: {fileID: 1296925090}
   - component: {fileID: 1296925093}
   - component: {fileID: 1296925094}
+  - component: {fileID: 1296925095}
   m_Layer: 0
   m_Name: Player5B
   m_TagString: Untagged
@@ -4639,13 +5082,35 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 0
+  position: 0
   opponentGoal: {fileID: 504576894}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
+--- !u!114 &1296925095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296925087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 0
+    sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
+  - vehicleType: 1
+    sprite: {fileID: -7346612907530598944, guid: 30bd1c88051f24f4c8eadaef3dd384f7, type: 3}
+  - vehicleType: 2
+    sprite: {fileID: 5797287731232756760, guid: d983ca0238f43344cb346cdda233a4cb, type: 3}
 --- !u!1 &1315995500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4734,7 +5199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1318811171}
   m_Layer: 0
-  m_Name: TeamAPlayer2
+  m_Name: TeamBPlayer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4749,7 +5214,7 @@ Transform:
   m_GameObject: {fileID: 1318811170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalPosition: {x: -30, y: -20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4887,7 +5352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1434866419}
   m_Layer: 0
-  m_Name: TeamAPlayer1
+  m_Name: TeamBPlayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4902,7 +5367,7 @@ Transform:
   m_GameObject: {fileID: 1434866418}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
-  m_LocalPosition: {x: -30, y: 0, z: 0}
+  m_LocalPosition: {x: -30, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5058,6 +5523,7 @@ GameObject:
   - component: {fileID: 1477580346}
   - component: {fileID: 1477580348}
   - component: {fileID: 1477580344}
+  - component: {fileID: 1477580349}
   m_Layer: 0
   m_Name: Player4A
   m_TagString: Untagged
@@ -5104,11 +5570,13 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 0
+  position: 0
   opponentGoal: {fileID: 969958059}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
 --- !u!50 &1477580346
@@ -5234,6 +5702,26 @@ CapsuleCollider2D:
   m_Offset: {x: -0.009097573, y: 0.0000152585835}
   m_Size: {x: 8.562139, y: 19.970007}
   m_Direction: 0
+--- !u!114 &1477580349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477580342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 0
+    sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
+  - vehicleType: 1
+    sprite: {fileID: -7346612907530598944, guid: 30bd1c88051f24f4c8eadaef3dd384f7, type: 3}
+  - vehicleType: 2
+    sprite: {fileID: 5797287731232756760, guid: d983ca0238f43344cb346cdda233a4cb, type: 3}
 --- !u!1 &1493895940
 GameObject:
   m_ObjectHideFlags: 0
@@ -5259,7 +5747,7 @@ Transform:
   m_GameObject: {fileID: 1493895940}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 30, z: 0}
+  m_LocalPosition: {x: -45, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5298,6 +5786,81 @@ Transform:
   - {fileID: 1369191856}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1527881039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1527881040}
+  - component: {fileID: 1527881042}
+  - component: {fileID: 1527881041}
+  m_Layer: 5
+  m_Name: Canada
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1527881040
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527881039}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 66435661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -50, y: 10}
+  m_SizeDelta: {x: 48, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1527881041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527881039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1527881042
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527881039}
+  m_CullTransparentMesh: 1
 --- !u!1 &1573891981
 GameObject:
   m_ObjectHideFlags: 0
@@ -5311,6 +5874,7 @@ GameObject:
   - component: {fileID: 1573891985}
   - component: {fileID: 1573891984}
   - component: {fileID: 1573891983}
+  - component: {fileID: 1573891987}
   m_Layer: 0
   m_Name: Player1A
   m_TagString: Untagged
@@ -5357,11 +5921,13 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 0
+  position: 0
   opponentGoal: {fileID: 969958059}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
 --- !u!70 &1573891984
@@ -5487,6 +6053,26 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1573891987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573891981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 0
+    sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
+  - vehicleType: 1
+    sprite: {fileID: -7346612907530598944, guid: 30bd1c88051f24f4c8eadaef3dd384f7, type: 3}
+  - vehicleType: 2
+    sprite: {fileID: 5797287731232756760, guid: d983ca0238f43344cb346cdda233a4cb, type: 3}
 --- !u!1 &1577918752
 GameObject:
   m_ObjectHideFlags: 0
@@ -5511,13 +6097,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577918752}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
-  m_LocalPosition: {x: -30, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1679129927
 GameObject:
   m_ObjectHideFlags: 0
@@ -5553,6 +6139,81 @@ Transform:
   - {fileID: 1159632771}
   m_Father: {fileID: 850515336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1693081788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1693081789}
+  - component: {fileID: 1693081791}
+  - component: {fileID: 1693081790}
+  m_Layer: 5
+  m_Name: Argentina
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1693081789
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693081788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 66435661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -50, y: 10}
+  m_SizeDelta: {x: 48, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1693081790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693081788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1693081791
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693081788}
+  m_CullTransparentMesh: 1
 --- !u!1 &1697310667
 GameObject:
   m_ObjectHideFlags: 0
@@ -5578,12 +6239,87 @@ Transform:
   m_GameObject: {fileID: 1697310667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -60, y: -40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1719789812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719789813}
+  - component: {fileID: 1719789815}
+  - component: {fileID: 1719789814}
+  m_Layer: 5
+  m_Name: Portugul
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1719789813
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719789812}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 66435661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 50, y: 10}
+  m_SizeDelta: {x: 48, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1719789814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719789812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1719789815
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719789812}
+  m_CullTransparentMesh: 1
 --- !u!1 &1740908493
 GameObject:
   m_ObjectHideFlags: 0
@@ -5609,7 +6345,7 @@ Transform:
   m_GameObject: {fileID: 1740908493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalPosition: {x: -30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5640,7 +6376,7 @@ Transform:
   m_GameObject: {fileID: 1823179157}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 80, z: 0}
+  m_LocalPosition: {x: 80, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5670,13 +6406,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836704815}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
-  m_LocalPosition: {x: 60, y: 60, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 60, y: -40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1319502934}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1847872287
 GameObject:
   m_ObjectHideFlags: 0
@@ -5691,6 +6427,7 @@ GameObject:
   - component: {fileID: 1847872290}
   - component: {fileID: 1847872293}
   - component: {fileID: 1847872294}
+  - component: {fileID: 1847872295}
   m_Layer: 0
   m_Name: Player3B
   m_TagString: Untagged
@@ -5879,13 +6616,35 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 0
+  position: 0
   opponentGoal: {fileID: 504576894}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
+--- !u!114 &1847872295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847872287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 0
+    sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
+  - vehicleType: 1
+    sprite: {fileID: -7346612907530598944, guid: 30bd1c88051f24f4c8eadaef3dd384f7, type: 3}
+  - vehicleType: 2
+    sprite: {fileID: 5797287731232756760, guid: d983ca0238f43344cb346cdda233a4cb, type: 3}
 --- !u!1 &1918049618
 GameObject:
   m_ObjectHideFlags: 0
@@ -5948,7 +6707,7 @@ Transform:
   m_GameObject: {fileID: 1929078641}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: 0, z: 0}
+  m_LocalPosition: {x: 30, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5978,13 +6737,88 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024410411}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.3420201, w: 0.9396927}
-  m_LocalPosition: {x: -60, y: 60, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30, y: -20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1079737273}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2029406921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2029406922}
+  - component: {fileID: 2029406924}
+  - component: {fileID: 2029406923}
+  m_Layer: 5
+  m_Name: Germany
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2029406922
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029406921}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 66435661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 50, y: 10}
+  m_SizeDelta: {x: 48, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2029406923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029406921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2029406924
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029406921}
+  m_CullTransparentMesh: 1
 --- !u!1 &2073781220
 GameObject:
   m_ObjectHideFlags: 0
@@ -5998,6 +6832,7 @@ GameObject:
   - component: {fileID: 2073781224}
   - component: {fileID: 2073781226}
   - component: {fileID: 2073781222}
+  - component: {fileID: 2073781227}
   m_Layer: 0
   m_Name: GoalieA
   m_TagString: Untagged
@@ -6044,11 +6879,13 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 1
+  position: 0
   opponentGoal: {fileID: 969958059}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
 --- !u!50 &2073781224
@@ -6183,6 +7020,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 8.54, y: 15.07}
   m_EdgeRadius: 0
+--- !u!114 &2073781227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073781220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 3
+    sprite: {fileID: -972747586082640523, guid: 1057942d558761146b753e4777d0943e, type: 3}
 --- !u!1 &2133483466
 GameObject:
   m_ObjectHideFlags: 0
@@ -6232,6 +7085,7 @@ GameObject:
   - component: {fileID: 2144815860}
   - component: {fileID: 2144815863}
   - component: {fileID: 2144815864}
+  - component: {fileID: 2144815865}
   m_Layer: 0
   m_Name: Player4B
   m_TagString: Untagged
@@ -6420,13 +7274,35 @@ MonoBehaviour:
   verticalAxis: Vertical
   isPlayerControlled: 0
   isGoalie: 0
+  position: 0
   opponentGoal: {fileID: 504576894}
   boostMultiplier: 2
   boostDrainRate: 1
   boostRechargeRate: 0.5
   maxBoost: 3
+  boostParticles: {fileID: 0}
   passForce: 8
   passCooldown: 0.5
+--- !u!114 &2144815865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144815857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7242a1d13c7cf2d4fb5e1daab2b77da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleAppearance
+  body: {fileID: 0}
+  vehicleSprites:
+  - vehicleType: 0
+    sprite: {fileID: -7921649188387484213, guid: 531333f944c894b4fb8afd94975a18bc, type: 3}
+  - vehicleType: 1
+    sprite: {fileID: -7346612907530598944, guid: 30bd1c88051f24f4c8eadaef3dd384f7, type: 3}
+  - vehicleType: 2
+    sprite: {fileID: 5797287731232756760, guid: d983ca0238f43344cb346cdda233a4cb, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

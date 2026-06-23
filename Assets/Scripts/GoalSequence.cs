@@ -9,27 +9,35 @@ public class GoalSequence : MonoBehaviour
 
     [Header("Banner")]
     public GameObject goalBanner;
-    public TextMeshProUGUI bannerText;
     public float bannerDuration = 2.5f;
 
-    [Header("Scorebug Flash")]
-    public Image teamAScoreFlash;
-    public Image teamBScoreFlash;
-    public Color flashColor = new Color(1f, 0.8f, 0f);
-    public float flashDuration = 0.5f;
-
     [Header("Effects")]
-    public ParticleSystem confettiParticles;
     public float shakeDuration  = 0.4f;
     public float shakeMagnitude = 0.35f;
 
-    [Header("Audio")]
-    public GameAudio gameAudio;
+    [Header("Flash")]
+    public Color flashColor    = new Color(1f, 0.8f, 0f);
+    public float flashDuration = 0.5f;
+
+    // Auto-resolved in Awake
+    private TextMeshProUGUI bannerText;
+    private ParticleSystem  confettiParticles;
+    private GameAudio       gameAudio;
+    private Scorebug        scorebug;
 
     void Awake()
     {
         Instance = this;
-        if (goalBanner != null) goalBanner.SetActive(false);
+
+        if (goalBanner != null)
+        {
+            goalBanner.SetActive(false);
+            bannerText = goalBanner.GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        confettiParticles = GetComponentInChildren<ParticleSystem>();
+        gameAudio         = FindAnyObjectByType<GameAudio>();
+        scorebug          = FindAnyObjectByType<Scorebug>();
     }
 
     public void Play(bool teamAScored, string scoringTeamName)
@@ -40,27 +48,24 @@ public class GoalSequence : MonoBehaviour
 
     IEnumerator Sequence(bool teamAScored, string scoringTeamName)
     {
-        // Banner
         if (goalBanner != null)
         {
             if (bannerText != null) bannerText.text = $"GOAL!\n{scoringTeamName}";
             goalBanner.SetActive(true);
         }
 
-        // Screen shake
         if (ScreenShake.Instance != null)
             ScreenShake.Instance.Shake(shakeDuration, shakeMagnitude);
 
-        // Confetti
         if (confettiParticles != null)
             confettiParticles.Play();
 
-        // Scorebug flash
-        Image flashTarget = teamAScored ? teamAScoreFlash : teamBScoreFlash;
-        if (flashTarget != null)
-            StartCoroutine(Flash(flashTarget));
+        if (scorebug != null)
+        {
+            Image flash = teamAScored ? scorebug.teamAScoreFlash : scorebug.teamBScoreFlash;
+            if (flash != null) StartCoroutine(Flash(flash));
+        }
 
-        // Audio
         if (gameAudio != null)
         {
             gameAudio.PlayGoal();

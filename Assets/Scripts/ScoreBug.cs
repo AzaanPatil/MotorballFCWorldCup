@@ -15,6 +15,8 @@ public class Scorebug : MonoBehaviour
     [Header("Score UI")]
     public TextMeshProUGUI teamAScoreText;
     public TextMeshProUGUI teamBScoreText;
+    public Image teamAScoreFlash;
+    public Image teamBScoreFlash;
 
     [Header("Timer UI")]
     public TextMeshProUGUI timerText;

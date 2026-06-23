@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class EndScreen : MonoBehaviour
@@ -12,6 +13,10 @@ public class EndScreen : MonoBehaviour
     public TextMeshProUGUI finalScoreText;
     public TextMeshProUGUI teamANameText;
     public TextMeshProUGUI teamBNameText;
+
+    [Header("Flags")]
+    public Image teamAFlagImage;
+    public Image teamBFlagImage;
 
     [Header("Stats")]
     public TextMeshProUGUI teamAGoalsText;
@@ -43,6 +48,11 @@ public class EndScreen : MonoBehaviour
 
         if (teamANameText != null) teamANameText.text = gm.teamA.teamName;
         if (teamBNameText != null) teamBNameText.text = gm.teamB.teamName;
+
+        if (teamAFlagImage != null && gm.teamA.teamFlag != null)
+            teamAFlagImage.sprite = gm.teamA.teamFlag;
+        if (teamBFlagImage != null && gm.teamB.teamFlag != null)
+            teamBFlagImage.sprite = gm.teamB.teamFlag;
 
         // Stats
         if (MatchStats.Instance != null)

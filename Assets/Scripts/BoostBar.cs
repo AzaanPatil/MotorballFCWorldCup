@@ -11,6 +11,15 @@ public class BoostBar : MonoBehaviour
     public Color fullColor  = new Color(0f, 0.8f, 1f);
     public Color emptyColor = new Color(1f, 0.2f, 0f);
 
+    void Start()
+    {
+        if (gameManager == null)
+            gameManager = FindAnyObjectByType<GameManager>();
+
+        if (gameManager == null)
+            gameObject.SetActive(false);
+    }
+
     void Update()
     {
         if (gameManager == null || gameManager.activePlayer == null)

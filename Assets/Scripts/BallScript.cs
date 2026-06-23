@@ -3,11 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BallScript : MonoBehaviour
 {
-	// Maximum ball speed, used to clamp the Rigidbody2D velocity.
 	public float maxSpeed = 15f;
-
-	// Simple drag factor applied each physics update.
 	public float drag = 0.5f;
+	public GameAudio gameAudio;
 
 	Rigidbody2D rb;
 
@@ -30,6 +28,11 @@ public class BallScript : MonoBehaviour
 		{
 			rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
 		}
+	}
+
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if (gameAudio != null) gameAudio.PlayBallHit();
 	}
 
 	public void ResetBall(Transform kickoffPoint = null)
