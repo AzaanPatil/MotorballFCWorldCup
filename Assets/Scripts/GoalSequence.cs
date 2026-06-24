@@ -21,7 +21,6 @@ public class GoalSequence : MonoBehaviour
 
     // Auto-resolved in Awake
     private TextMeshProUGUI bannerText;
-    private ParticleSystem  confettiParticles;
     private GameAudio       gameAudio;
     private Scorebug        scorebug;
 
@@ -35,9 +34,14 @@ public class GoalSequence : MonoBehaviour
             bannerText = goalBanner.GetComponentInChildren<TextMeshProUGUI>();
         }
 
-        confettiParticles = GetComponentInChildren<ParticleSystem>();
-        gameAudio         = FindAnyObjectByType<GameAudio>();
-        scorebug          = FindAnyObjectByType<Scorebug>();
+        // Remove leftover confetti particle system (was never properly set up)
+        var ps = GetComponent<ParticleSystem>();
+        if (ps != null) Destroy(ps);
+        var psr = GetComponent<ParticleSystemRenderer>();
+        if (psr != null) Destroy(psr);
+
+        gameAudio = FindAnyObjectByType<GameAudio>();
+        scorebug  = FindAnyObjectByType<Scorebug>();
     }
 
     public void Play(bool teamAScored, string scoringTeamName)
@@ -48,6 +52,8 @@ public class GoalSequence : MonoBehaviour
 
     IEnumerator Sequence(bool teamAScored, string scoringTeamName)
     {
+        VehicleController.MuteEngines(true);
+
         if (goalBanner != null)
         {
             if (bannerText != null) bannerText.text = $"GOAL!\n{scoringTeamName}";
@@ -56,9 +62,6 @@ public class GoalSequence : MonoBehaviour
 
         if (ScreenShake.Instance != null)
             ScreenShake.Instance.Shake(shakeDuration, shakeMagnitude);
-
-        if (confettiParticles != null)
-            confettiParticles.Play();
 
         if (scorebug != null)
         {
@@ -76,7 +79,7 @@ public class GoalSequence : MonoBehaviour
         yield return new WaitForSeconds(bannerDuration);
 
         if (goalBanner != null) goalBanner.SetActive(false);
-        if (confettiParticles != null) confettiParticles.Stop();
+        VehicleController.MuteEngines(false);
     }
 
     IEnumerator Flash(Image img)

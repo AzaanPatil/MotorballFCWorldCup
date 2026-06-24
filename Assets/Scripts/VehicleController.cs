@@ -94,6 +94,15 @@ public class VehicleController : MonoBehaviour
 
     private AudioSource engineSource;
 
+    public static void MuteEngines(bool mute)
+    {
+        foreach (var v in FindObjectsByType<VehicleController>())
+        {
+            if (v.engineSource != null)
+                v.engineSource.mute = mute;
+        }
+    }
+
     [Header("Boost")]
     public float boostMultiplier = 2f;
     public float boostDrainRate = 1f;
@@ -226,8 +235,10 @@ public class VehicleController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Cancel any spin imparted by collisions — rotation is set directly via RotateToward
         rb.angularVelocity = 0f;
+
+        // Shell hit — let the explosion impulse carry the vehicle; skip all input
+        if (Time.time < _stunUntil) return;
 
         if (isPlayerControlled)
             MovePlayer();
@@ -264,7 +275,13 @@ public class VehicleController : MonoBehaviour
         }
     }
 
-    private bool _aiDiagLogged = false;
+    private bool  _aiDiagLogged = false;
+    private float _stunUntil    = -1f;
+
+    public void ApplyStun(float duration)
+    {
+        _stunUntil = Mathf.Max(_stunUntil, Time.time + duration);
+    }
 
     private void MoveAI()
     {

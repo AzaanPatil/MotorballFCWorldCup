@@ -20,6 +20,15 @@ public class Shell : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
+        transform.localScale = Vector2.one * 0.25f;
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sortingOrder = 5;
+            // Force the correct material regardless of what the prefab serialized
+            var shader = Shader.Find("Sprites/Default");
+            if (shader != null) sr.material = new Material(shader);
+        }
         Destroy(gameObject, lifetime);
     }
 
@@ -35,8 +44,18 @@ public class Shell : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Don't hit the firing tank itself
-        if (owner != null && other.gameObject == owner.gameObject) return;
+        bool isBall = other.CompareTag("Ball");
+
+        // GetComponentInParent catches vehicles whose collider is on a child object
+        VehicleController hitVc = other.GetComponentInParent<VehicleController>();
+        bool isEnemy = hitVc != null
+                       && hitVc.gameObject != (owner != null ? owner.gameObject : null)
+                       && (friendlyFire || owner == null || hitVc.team != owner.team);
+
+        if (!isBall && !isEnemy) return;
+
+        // Stun the directly-hit vehicle immediately before the blast radius sweep
+        if (isEnemy) hitVc.ApplyStun(1.0f);
 
         Explode(transform.position);
     }
@@ -50,7 +69,7 @@ public class Shell : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(pos, blastRadius, hitLayers);
         foreach (var col in hits)
         {
-            // Push ball
+            // Push ball — high multiplier so a direct hit sends it across the field
             if (col.CompareTag("Ball"))
             {
                 Rigidbody2D ballRb = col.GetComponent<Rigidbody2D>();
@@ -58,20 +77,24 @@ public class Shell : MonoBehaviour
                 {
                     Vector2 dir   = ((Vector2)col.transform.position - pos).normalized;
                     float   scale = 1f - (Vector2.Distance(col.transform.position, pos) / blastRadius);
-                    ballRb.AddForce(dir * blastForce * scale, ForceMode2D.Impulse);
+                    ballRb.linearVelocity = Vector2.zero;
+                    ballRb.AddForce(dir * blastForce * 5f * scale, ForceMode2D.Impulse);
                 }
             }
 
-            // Push vehicles
-            if (col.TryGetComponent<VehicleController>(out var vc))
+            // Stun and knock back vehicles
+            VehicleController blastVc = col.GetComponentInParent<VehicleController>();
+            if (blastVc != null)
             {
-                if (!friendlyFire && owner != null && vc.team == owner.team) continue;
-                Rigidbody2D vcRb = col.GetComponent<Rigidbody2D>();
+                if (!friendlyFire && owner != null && blastVc.team == owner.team) continue;
+                blastVc.ApplyStun(1.0f);
+                Rigidbody2D vcRb = blastVc.GetComponent<Rigidbody2D>();
                 if (vcRb != null)
                 {
                     Vector2 dir   = ((Vector2)col.transform.position - pos).normalized;
                     float   scale = 1f - (Vector2.Distance(col.transform.position, pos) / blastRadius);
-                    vcRb.AddForce(dir * blastForce * 0.5f * scale, ForceMode2D.Impulse);
+                    vcRb.linearVelocity = Vector2.zero;
+                    vcRb.AddForce(dir * blastForce * 3f * scale, ForceMode2D.Impulse);
                 }
             }
         }

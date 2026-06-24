@@ -25,6 +25,14 @@ public class TurretController : MonoBehaviour
     public void SetPlayerControlled(bool controlled) => isPlayerControlled = controlled;
     public void SetTarget(Transform t)               => target = t;
 
+    void Start()
+    {
+        // Kill any Play-on-Awake particle system on the fire point (leftover muzzle flash placeholder)
+        if (firePoint != null)
+            foreach (var ps in firePoint.GetComponents<ParticleSystem>())
+                if (ps != muzzleFlash) { ps.Stop(); ps.Clear(); ps.gameObject.SetActive(false); }
+    }
+
     void Update()
     {
         if (isPlayerControlled)
@@ -64,7 +72,7 @@ public class TurretController : MonoBehaviour
         if (shell.TryGetComponent<Shell>(out var s))
         {
             s.SetOwner(GetComponentInParent<VehicleController>());
-            s.Launch(firePoint.up, shellSpeed);
+            s.Launch(-firePoint.up, shellSpeed);
         }
 
         if (muzzleFlash != null) muzzleFlash.Play();
