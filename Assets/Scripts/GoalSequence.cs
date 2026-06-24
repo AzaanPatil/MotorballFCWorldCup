@@ -68,8 +68,9 @@ public class GoalSequence : MonoBehaviour
 
         if (gameAudio != null)
         {
-            gameAudio.PlayGoal();
-            gameAudio.PlayGoalCheer();
+            if (teamAScored) gameAudio.PlayGoal();
+            if (teamAScored) gameAudio.PlayGoalCheer();
+            else             gameAudio.PlayAwayGoalReaction();
         }
 
         yield return new WaitForSeconds(bannerDuration);

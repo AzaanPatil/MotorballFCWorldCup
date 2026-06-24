@@ -35,11 +35,9 @@ public class VehicleAppearance : MonoBehaviour
         }
     }
 
-    // Tints the current sprite with the country's home or away color.
+    // Tints the body and any child sprite renderers (e.g. turret) with the team color.
     public void ApplyTeamColor(VehicleController.Team team)
     {
-        if (body == null) return;
-
         Color teamColor = Color.white;
 
         if (CountryManager.Instance != null)
@@ -49,6 +47,15 @@ public class VehicleAppearance : MonoBehaviour
                 : CountryManager.Instance.GetCountryData(MatchSettings.awayCountry)?.awayColor ?? Color.white;
         }
 
-        body.color = teamColor;
+        if (body != null) body.color = teamColor;
+
+        // Tint child renderers (turret pivot, etc.) and ensure they sort above the body
+        int bodyOrder = body != null ? body.sortingOrder : 0;
+        foreach (var sr in GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (sr == body || sr.sprite == null) continue;
+            sr.color        = teamColor;
+            sr.sortingOrder = bodyOrder + 1;
+        }
     }
 }

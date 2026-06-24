@@ -3,23 +3,24 @@ using UnityEngine;
 public class PlayerHighlight : MonoBehaviour
 {
     public GameManager gameManager;
-    public Vector3 offset = new Vector3(0f, -0.1f, 1f);
+    public Vector3 offset = new Vector3(0f, 0f, 0f);
 
-    void Start()
+    private SpriteRenderer sr;
+
+    void Awake()
     {
+        sr = GetComponent<SpriteRenderer>();
         if (gameManager == null)
             gameManager = FindAnyObjectByType<GameManager>();
     }
 
     void LateUpdate()
     {
-        if (gameManager == null || gameManager.activePlayer == null)
-        {
-            gameObject.SetActive(false);
-            return;
-        }
+        bool hasTarget = gameManager != null && gameManager.activePlayer != null;
 
-        gameObject.SetActive(true);
-        transform.position = gameManager.activePlayer.transform.position + offset;
+        if (sr != null) sr.enabled = hasTarget;
+
+        if (hasTarget)
+            transform.position = gameManager.activePlayer.transform.position + offset;
     }
 }

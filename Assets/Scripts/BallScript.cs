@@ -5,9 +5,11 @@ public class BallScript : MonoBehaviour
 {
 	public float maxSpeed = 15f;
 	public float drag = 0.5f;
+	public float bounceSoundCooldown = 0.15f;
 	public GameAudio gameAudio;
 
 	Rigidbody2D rb;
+	float lastBounceTime = -10f;
 
 	void Awake()
 	{
@@ -32,7 +34,9 @@ public class BallScript : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D col)
 	{
+		if (Time.time - lastBounceTime < bounceSoundCooldown) return;
 		if (gameAudio != null) gameAudio.PlayBallHit();
+		lastBounceTime = Time.time;
 	}
 
 	public void ResetBall(Transform kickoffPoint = null)

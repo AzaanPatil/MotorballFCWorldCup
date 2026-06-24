@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
     public Transform ball;
     public Transform kickoffPoint;
     public Rigidbody2D ballRb;
+    public float ballStuckTimeout        = 4f;
+    public float ballStuckSpeedThreshold = 1f;
+    private float ballStuckTimer         = 0f;
 
     [Header("UI")]
     public Text scoreText;
@@ -78,6 +81,7 @@ public class GameManager : MonoBehaviour
     public GameObject   teamBGoalie;
 
     [HideInInspector] public VehicleController[] allVehicles;
+    public bool IsGameActive { get; private set; }
     private float goalTimer;
     private float lastSwitchTime;
 
@@ -96,7 +100,7 @@ public class GameManager : MonoBehaviour
                         positions = new[] { S } },
                 new() { mode = GameMode.TwoVTwo,     playersPerTeam = 2, matchDuration = 120f, useGoalie = false,
                         positions = new[] { S, S } },
-                new() { mode = GameMode.ThreeVThree, playersPerTeam = 3, matchDuration = 120f, useGoalie = false,
+                new() { mode = GameMode.ThreeVThree, playersPerTeam = 3, matchDuration = 120f, useGoalie = true,
                         positions = new[] { S, S, M } },
                 new() { mode = GameMode.FiveVFive,   playersPerTeam = 5, matchDuration = 120f, useGoalie = true,
                         positions = new[] { S, S, M, D, D } },
@@ -123,6 +127,7 @@ public class GameManager : MonoBehaviour
 
     void InitializeGame()
     {
+        IsGameActive = true;
         currentMode = MatchSettings.selectedMode;
         playerTeam  = MatchSettings.playerTeam;
 
@@ -132,6 +137,7 @@ public class GameManager : MonoBehaviour
             ballRb = ball.GetComponent<Rigidbody2D>();
 
         AutoDiscoverTeams();
+        ValidateSetup();
         ConfigureMatch();
 
         teamAScore = 0;
@@ -199,17 +205,25 @@ public class GameManager : MonoBehaviour
         foreach (var v in allVehicles)
             v.SetPlayerControlled(false);
 
-        // Assign to first active friendly non-goalie
+        // Assign to Player1 of the player's team, falling back to first available
         bool assigned = false;
+        VehicleController fallback = null;
         foreach (var v in allVehicles)
         {
-            if (v.team == playerTeam && v.gameObject.activeSelf && !v.isGoalie)
+            if (v.team != playerTeam || !v.gameObject.activeSelf || v.isGoalie) continue;
+            if (fallback == null) fallback = v;
+            if (v.name.Contains("Player1") || v.name.EndsWith("1"))
             {
                 SetActivePlayer(v);
                 assigned = true;
                 Debug.Log($"[GameManager] Player controlling: {v.name} (team={v.team})");
                 break;
             }
+        }
+        if (!assigned && fallback != null)
+        {
+            SetActivePlayer(fallback);
+            assigned = true;
         }
 
         if (!assigned)
@@ -230,13 +244,61 @@ public class GameManager : MonoBehaviour
                                "Check Gameplay/TeamA and Gameplay/TeamB exist with VehicleController on their children.");
         }
 
-        // Tint every vehicle with its country's color
+        // Tint every vehicle with its country's color — catch errors so they can't prevent Playing state
+        try
+        {
+            foreach (var v in allVehicles)
+                if (v != null && v.TryGetComponent<VehicleAppearance>(out var appearance))
+                    appearance.ApplyTeamColor(v.team);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"[GameManager] ApplyTeamColor threw: {e.Message}. Continuing anyway.");
+        }
+
+        // Log each vehicle's final state so any misconfiguration is obvious
         foreach (var v in allVehicles)
-            if (v.TryGetComponent<VehicleAppearance>(out var appearance))
-                appearance.ApplyTeamColor(v.team);
+        {
+            if (v == null) continue;
+            Debug.Log($"[GameManager] Vehicle '{v.name}': team={v.team} pos={v.position} isGoalie={v.isGoalie} " +
+                      $"ownGoal={(v.ownGoal != null ? v.ownGoal.name : "NULL ⚠")} " +
+                      $"oppGoal={(v.opponentGoal != null ? v.opponentGoal.name : "NULL ⚠")} " +
+                      $"playerControlled={v.isPlayerControlled}");
+        }
 
         currentState = GameState.Playing;
         SetMessage("Playing");
+    }
+
+    // ── Setup validation ────────────────────────────────────────────────────
+
+    void ValidateSetup()
+    {
+        string ok  = "✓";
+        string bad = "✗ MISSING";
+
+        string goalAInfo = teamAShootsAt != null
+            ? $"{ok} {teamAShootsAt.name} @ {teamAShootsAt.position}"
+            : $"{bad} — drag Team B net Transform into GameManager.TeamA Shoots At";
+        string goalBInfo = teamBShootsAt != null
+            ? $"{ok} {teamBShootsAt.name} @ {teamBShootsAt.position}"
+            : $"{bad} — drag Team A net Transform into GameManager.TeamB Shoots At";
+
+        Debug.Log("=== GameManager Setup Validation ===\n" +
+            $"  Ball              : {(ball            != null ? ok + " " + ball.name            : bad + " — drag Ball into GameManager.Ball")}\n" +
+            $"  KickoffPoint      : {(kickoffPoint    != null ? ok + " " + kickoffPoint.name + " @ " + kickoffPoint.position    : bad + " — drag KickoffPoint into GameManager.KickoffPoint")}\n" +
+            $"  TeamA shoots at   : {goalAInfo}\n" +
+            $"  TeamB shoots at   : {goalBInfo}\n" +
+            $"  TeamA container   : {(teamAContainer  != null ? ok + " " + teamAContainer.name  : bad + " — drag Gameplay/TeamA into GameManager.Team A Container")}\n" +
+            $"  TeamB container   : {(teamBContainer  != null ? ok + " " + teamBContainer.name  : bad + " — drag Gameplay/TeamB into GameManager.Team B Container")}\n" +
+            $"  SpawnPoints root  : {(spawnPointsRoot != null ? ok + " " + spawnPointsRoot.name : bad + " — drag SpawnPoints root into GameManager.Spawn Points Root")}\n" +
+            $"  TeamA goalie      : {(teamAGoalie     != null ? ok + " " + teamAGoalie.name     : "— none detected (only needed for modes with useGoalie=true)")}\n" +
+            $"  TeamB goalie      : {(teamBGoalie     != null ? ok + " " + teamBGoalie.name     : "— none detected")}\n" +
+            $"  Mode              : {currentMode}  |  playerTeam={playerTeam}\n" +
+            "====================================");
+
+        if (teamAShootsAt == null || teamBShootsAt == null)
+            Debug.LogError("[GameManager] Goal targets are null — ALL AI will cluster at ball because ownGoal/opponentGoal will be null on every vehicle. Fix this first.");
     }
 
     // ── Auto-discovery ──────────────────────────────────────────────────────
@@ -265,10 +327,11 @@ public class GameManager : MonoBehaviour
             var players = new List<GameObject>();
             foreach (Transform child in teamAContainer)
             {
-                if (IsGoalieObject(child.gameObject)) teamAGoalie = child.gameObject;
+                if (IsGoalieObject(child.gameObject)) { teamAGoalie = child.gameObject; Debug.Log($"[GameManager] TeamA goalie detected: {child.name}"); }
                 else players.Add(child.gameObject);
             }
             if (players.Count > 0) teamAPlayers = players.ToArray();
+            Debug.Log($"[GameManager] TeamA — {players.Count} player(s), goalie={(teamAGoalie != null ? teamAGoalie.name : "NONE")}");
         }
 
         if (teamBContainer != null)
@@ -276,10 +339,11 @@ public class GameManager : MonoBehaviour
             var players = new List<GameObject>();
             foreach (Transform child in teamBContainer)
             {
-                if (IsGoalieObject(child.gameObject)) teamBGoalie = child.gameObject;
+                if (IsGoalieObject(child.gameObject)) { teamBGoalie = child.gameObject; Debug.Log($"[GameManager] TeamB goalie detected: {child.name}"); }
                 else players.Add(child.gameObject);
             }
             if (players.Count > 0) teamBPlayers = players.ToArray();
+            Debug.Log($"[GameManager] TeamB — {players.Count} player(s), goalie={(teamBGoalie != null ? teamBGoalie.name : "NONE")}");
         }
 
         // Level 3: scan every VehicleController in the scene grouped by team field
@@ -333,12 +397,13 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("[GameManager] No Team B vehicles found. They will be missing from the match.");
     }
 
-    // Checks the isGoalie flag on whichever AI script is present
+    // A vehicle is a goalie if its flag is set OR its name contains "Goalie" — whichever is easier to configure.
     bool IsGoalieObject(GameObject go)
     {
-        if (go.TryGetComponent<VehicleController>(out var vc)) return vc.isGoalie;
-        if (go.TryGetComponent<AI>(out var ai)) return ai.isGoalie;
-        return false;
+        bool byName = go.name.IndexOf("Goalie", System.StringComparison.OrdinalIgnoreCase) >= 0;
+        if (go.TryGetComponent<VehicleController>(out var vc)) return vc.isGoalie || byName;
+        if (go.TryGetComponent<AI>(out var ai))                return ai.isGoalie  || byName;
+        return byName;
     }
 
     // Reads TeamXPlayer1, TeamXPlayer2, ... children under SpawnPoints/<ModeName>/
@@ -400,6 +465,21 @@ public class GameManager : MonoBehaviour
             gameTime += Time.deltaTime;
             if (gameTime >= gameDuration)
                 EndGame();
+
+            if (ballRb != null)
+            {
+                if (ballRb.linearVelocity.magnitude < ballStuckSpeedThreshold)
+                    ballStuckTimer += Time.deltaTime;
+                else
+                    ballStuckTimer = 0f;
+
+                if (ballStuckTimer >= ballStuckTimeout)
+                {
+                    ballStuckTimer = 0f;
+                    if (ball.TryGetComponent<BallScript>(out var bs))
+                        bs.ResetBall(kickoffPoint);
+                }
+            }
         }
         else if (currentState == GameState.Goal)
         {
@@ -513,6 +593,7 @@ public class GameManager : MonoBehaviour
         if (!go.TryGetComponent<VehicleController>(out var vc)) return;
 
         vc.position    = position;
+        vc.isGoalie    = position == VehicleController.PlayerPosition.Goalie;
         vc.vehicleType = GetVehicleTypeForPosition(position);
         vc.ApplyVehicleStats();
 
@@ -579,9 +660,10 @@ public class GameManager : MonoBehaviour
 
     void SwitchPlayer()
     {
-        if (allVehicles == null) return;
+        if (allVehicles == null || activePlayer == null) return;
         if (Time.time - lastSwitchTime < switchCooldown) return;
 
+        // Find the closest friendly (other than current player) to the ball
         VehicleController best = null;
         float closestDist = float.MaxValue;
 
@@ -592,11 +674,20 @@ public class GameManager : MonoBehaviour
             if (d < closestDist) { closestDist = d; best = v; }
         }
 
-        if (best != null)
+        float activeDist = activePlayer.DistanceToBall();
+
+        if (best != null && closestDist < activeDist)
         {
+            // Someone else is closer — switch to them
             SetActivePlayer(best);
-            lastSwitchTime = Time.time;
         }
+        else
+        {
+            // We're the closest — smart pass to most open teammate ahead
+            activePlayer.TrySmartPass();
+        }
+
+        lastSwitchTime = Time.time;
     }
 
     // ── Match configuration ─────────────────────────────────────────────────
@@ -629,12 +720,16 @@ public class GameManager : MonoBehaviour
                 if (teamAPlayers[i] != null) teamAPlayers[i].SetActive(i < needed);
 
         if (teamAGoalie != null) teamAGoalie.SetActive(settings.useGoalie);
+        else if (settings.useGoalie) Debug.LogWarning($"[GameManager] {currentMode} needs a goalie but teamAGoalie is null. " +
+            "Ensure one child of TeamA has isGoalie=true on its VehicleController, or 'Goalie' in its name.");
 
         if (teamBPlayers != null)
             for (int i = 0; i < teamBPlayers.Length; i++)
                 if (teamBPlayers[i] != null) teamBPlayers[i].SetActive(i < needed);
 
         if (teamBGoalie != null) teamBGoalie.SetActive(settings.useGoalie);
+        else if (settings.useGoalie) Debug.LogWarning($"[GameManager] {currentMode} needs a goalie but teamBGoalie is null. " +
+            "Ensure one child of TeamB has isGoalie=true on its VehicleController, or 'Goalie' in its name.");
 
         Debug.Log($"[GameManager] Mode={currentMode} — {needed}v{needed}, goalie={settings.useGoalie} | A={teamAPlayers?.Length ?? 0} B={teamBPlayers?.Length ?? 0}");
     }
@@ -649,36 +744,87 @@ public class GameManager : MonoBehaviour
         Transform   goalieSpawnA = GetGoalieSpawn(true);
         Transform   goalieSpawnB = GetGoalieSpawn(false);
 
+        if (spawnA.Length < needed)
+            Debug.LogWarning($"[GameManager] SpawnPoints/{currentMode} has only {spawnA.Length} TeamA slots " +
+                $"but {needed} are needed. Using computed fallback positions.");
+
         if (teamAPlayers != null)
             for (int i = 0; i < teamAPlayers.Length && i < needed; i++)
-                PlaceVehicle(teamAPlayers[i], spawnA, i);
+                PlaceVehicle(teamAPlayers[i], spawnA, i, ComputeSpawn(true, i, needed));
 
-        if (settings.useGoalie) PlaceVehicle(teamAGoalie, goalieSpawnA);
+        if (settings.useGoalie)
+        {
+            if (goalieSpawnA == null)
+                Debug.LogWarning($"[GameManager] No goalie spawn found for TeamA — using computed fallback.");
+            PlaceVehicle(teamAGoalie, goalieSpawnA, ComputeGoalieSpawn(true));
+        }
 
         if (teamBPlayers != null)
             for (int i = 0; i < teamBPlayers.Length && i < needed; i++)
-                PlaceVehicle(teamBPlayers[i], spawnB, i);
+                PlaceVehicle(teamBPlayers[i], spawnB, i, ComputeSpawn(false, i, needed));
 
-        if (settings.useGoalie) PlaceVehicle(teamBGoalie, goalieSpawnB);
+        if (settings.useGoalie)
+        {
+            if (goalieSpawnB == null)
+                Debug.LogWarning($"[GameManager] No goalie spawn found for TeamB — using computed fallback.");
+            PlaceVehicle(teamBGoalie, goalieSpawnB, ComputeGoalieSpawn(false));
+        }
     }
 
-    void PlaceVehicle(GameObject go, Transform[] points, int index)
+    // Returns the world-space centre of a goal trigger, reading BoxCollider2D offset rather than raw Transform position.
+    // Mirrors the same helper in VehicleController so both use identical reference points.
+    static Vector2 GoalCenter(Transform t)
+    {
+        if (t == null) return Vector2.zero;
+        var col = t.GetComponent<BoxCollider2D>();
+        return col != null ? (Vector2)t.TransformPoint(col.offset) : (Vector2)t.position;
+    }
+
+    // Computes a reasonable spawn position from goal transforms when named spawn points don't exist.
+    Vector3 ComputeSpawn(bool forTeamA, int index, int total)
+    {
+        if (teamAShootsAt == null || teamBShootsAt == null)
+            return kickoffPoint != null ? kickoffPoint.position : Vector3.zero;
+        Vector2 ownGoalPos = forTeamA ? GoalCenter(teamBShootsAt) : GoalCenter(teamAShootsAt);
+        Vector2 oppGoalPos = forTeamA ? GoalCenter(teamAShootsAt) : GoalCenter(teamBShootsAt);
+        Vector2 mid        = (ownGoalPos + oppGoalPos) * 0.5f;
+        Vector2 attackDir  = (oppGoalPos - ownGoalPos).normalized;
+        Vector2 lateral    = new(-attackDir.y, attackDir.x);
+        float   laneOffset = (index - (total - 1) * 0.5f) * 5f;
+        return mid - attackDir * 4f + lateral * laneOffset;
+    }
+
+    Vector3 ComputeGoalieSpawn(bool forTeamA)
+    {
+        if (teamAShootsAt == null || teamBShootsAt == null)
+            return kickoffPoint != null ? kickoffPoint.position : Vector3.zero;
+        Vector2 ownGoalPos = forTeamA ? GoalCenter(teamBShootsAt) : GoalCenter(teamAShootsAt);
+        Vector2 oppGoalPos = forTeamA ? GoalCenter(teamAShootsAt) : GoalCenter(teamBShootsAt);
+        Vector2 attackDir  = (oppGoalPos - ownGoalPos).normalized;
+        return ownGoalPos + attackDir * 3f;
+    }
+
+    void PlaceVehicle(GameObject go, Transform[] points, int index, Vector3 fallbackPos)
     {
         if (go == null || !go.activeSelf) return;
-        PlaceAt(go, (points != null && index < points.Length) ? points[index] : null);
+        if (points != null && index < points.Length && points[index] != null)
+            PlaceAt(go, points[index].position, points[index].rotation);
+        else
+            PlaceAt(go, fallbackPos, Quaternion.identity);
     }
 
-    void PlaceVehicle(GameObject go, Transform point)
+    void PlaceVehicle(GameObject go, Transform point, Vector3 fallbackPos)
     {
         if (go == null || !go.activeSelf) return;
-        PlaceAt(go, point);
-    }
-
-    void PlaceAt(GameObject go, Transform point)
-    {
         if (point != null)
-            go.transform.SetPositionAndRotation(point.position, point.rotation);
+            PlaceAt(go, point.position, point.rotation);
+        else
+            PlaceAt(go, fallbackPos, Quaternion.identity);
+    }
 
+    void PlaceAt(GameObject go, Vector3 position, Quaternion rotation)
+    {
+        go.transform.SetPositionAndRotation(position, rotation);
         if (go.TryGetComponent<Rigidbody2D>(out var rb))
         {
             rb.linearVelocity  = Vector2.zero;
@@ -698,5 +844,38 @@ public class GameManager : MonoBehaviour
     {
         if (messageText != null)
             messageText.text = message;
+    }
+
+    // ── Editor diagnostics ──────────────────────────────────────────────────
+
+    void OnDrawGizmos()
+    {
+        float r = 1f;
+
+        if (teamAShootsAt != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(teamAShootsAt.position, r);
+#if UNITY_EDITOR
+            UnityEditor.Handles.Label(teamAShootsAt.position + Vector3.up * (r + 0.3f),
+                $"TeamA shoots AT here\n(= Team B net)\n{teamAShootsAt.name} @ {teamAShootsAt.position}");
+#endif
+        }
+
+        if (teamBShootsAt != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(teamBShootsAt.position, r);
+#if UNITY_EDITOR
+            UnityEditor.Handles.Label(teamBShootsAt.position + Vector3.up * (r + 0.3f),
+                $"TeamB shoots AT here\n(= Team A net)\n{teamBShootsAt.name} @ {teamBShootsAt.position}");
+#endif
+        }
+
+        if (kickoffPoint != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(kickoffPoint.position, r * 0.5f);
+        }
     }
 }
